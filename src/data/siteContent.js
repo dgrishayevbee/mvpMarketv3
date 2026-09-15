@@ -6,7 +6,7 @@
 // Beeline Business: каталог сервисов для ИП и самозанятых, тарифные пакеты,
 // личный кабинет. Деньги в тенге, разряд — обычный пробел.
 
-export const CONTENT_VERSION = "v2-ds-2";
+export const CONTENT_VERSION = "v3-sidebar-1";
 
 export const defaultContent = {
   brand: {
@@ -15,12 +15,12 @@ export const defaultContent = {
   },
 
   // Пункты сайдбара. Каждый ведёт на реальный роут — пустых пунктов нет.
-  nav: [
-    { id: "catalog", label: "Каталог", to: "/", icon: "grid" },
-    { id: "cart", label: "Корзина", to: "/cart", icon: "cart" },
-    { id: "cabinet", label: "Кабинет", to: "/profile", icon: "home" },
-    { id: "seller", label: "Кабинет поставщика", to: "/seller", icon: "clipboard" },
-    { id: "admin", label: "Контент", to: "/admin", icon: "doc" },
+  // Текстовые ссылки в топбаре. Сайдбар занят каталогом (категории и
+  // быстрые ссылки), поэтому служебные экраны живут здесь.
+  topbarNav: [
+    { id: "cabinet", label: "Кабинет", to: "/profile" },
+    { id: "seller", label: "Кабинет поставщика", to: "/seller" },
+    { id: "admin", label: "Контент", to: "/admin" },
   ],
 
   support: {
@@ -48,12 +48,26 @@ export const defaultContent = {
   },
 
   categories: [
-    { id: "connect", label: "Связь" },
-    { id: "accounting", label: "Бухгалтерия" },
-    { id: "payments", label: "Платежи" },
-    { id: "ads", label: "Реклама" },
-    { id: "docs", label: "Документы" },
-    { id: "security", label: "Безопасность" },
+    { id: "connect", label: "Связь", icon: "phone" },
+    { id: "accounting", label: "Бухгалтерия", icon: "calculator" },
+    { id: "payments", label: "Платежи", icon: "card" },
+    { id: "ads", label: "Реклама", icon: "megaphone" },
+    { id: "docs", label: "Документы", icon: "doc" },
+    { id: "security", label: "Безопасность", icon: "shield" },
+  ],
+
+  // Вторая и третья группы сайдбара. supportLinks нарисованы неактивными:
+  // экранов за ними в прототипе нет, но место в навигации они занимают.
+  quickLinks: [
+    { id: "plans", label: "Готовые пакеты", icon: "layers", to: "/#plans" },
+    { id: "favorites", label: "Избранное", icon: "heart", to: "/profile#favorites" },
+    { id: "payments-history", label: "Мои платежи", icon: "refresh", to: "/profile" },
+    { id: "orders", label: "История заказов", icon: "clock", to: "/profile#orders" },
+  ],
+
+  supportLinks: [
+    { id: "support", label: "Поддержка", icon: "headset" },
+    { id: "requests", label: "История заявок", icon: "doc" },
   ],
 
   // По одному решению на категорию: каталог держится компактным, и ни один

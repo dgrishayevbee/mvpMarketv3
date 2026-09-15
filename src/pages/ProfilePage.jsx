@@ -137,7 +137,7 @@ export function ProfilePage() {
             ))}
           </Card>
 
-          <Card pad="md">
+          <Card pad="md" id="favorites">
             <span className="card-title">Избранное</span>
             {favorites.length === 0 ? (
               <span className="muted-note">
@@ -158,7 +158,7 @@ export function ProfilePage() {
       </div>
 
       {orders.length > 0 && (
-        <Card pad="md">
+        <Card pad="md" id="orders">
           <span className="card-title">Заявки</span>
           {orders.map((order) => (
             <Row

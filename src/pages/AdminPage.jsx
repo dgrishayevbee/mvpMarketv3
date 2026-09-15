@@ -139,7 +139,7 @@ export function AdminPage() {
       <section className="section">
         <SectionHead
           title="Категории"
-          subtitle="Чипы-фильтры над сеткой каталога"
+          subtitle="Группа фильтров в сайдбаре. Иконка подбирается по полю icon"
           aside={
             <Button size="sm" variant="secondary" onClick={() => addCategory({ label: "Новая категория" })}>
               <IconPlus size={16} />

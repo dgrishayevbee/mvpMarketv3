@@ -199,6 +199,50 @@ export const IconPlanL = (p) => (
   </Svg>
 );
 
+export const IconLayers = (p) => (
+  <Svg {...p}>
+    <path d="M12 3.6l8 4.1-8 4.1-8-4.1 8-4.1z" />
+    <path d="M4 12l8 4.1 8-4.1" />
+    <path d="M4 16.2l8 4.1 8-4.1" />
+  </Svg>
+);
+
+export const IconHeart = (p) => (
+  <Svg {...p}>
+    <path d="M12 19.6l-1.1-1c-4.2-3.8-6.6-6-6.6-8.7A3.9 3.9 0 0 1 8.2 6c1.3 0 2.5.6 3.2 1.6l.6.7.6-.7A4 4 0 0 1 15.8 6a3.9 3.9 0 0 1 3.9 3.9c0 2.7-2.4 4.9-6.6 8.7l-1.1 1z" />
+  </Svg>
+);
+
+export const IconRefresh = (p) => (
+  <Svg {...p}>
+    <path d="M4.6 12a7.4 7.4 0 1 1 2.2 5.2" />
+    <path d="M4.2 17.6v-4.4h4.4" />
+  </Svg>
+);
+
+export const IconHeadset = (p) => (
+  <Svg {...p}>
+    <path d="M4.8 14.4v-2a7.2 7.2 0 0 1 14.4 0v2" />
+    <path d="M4.8 13.2h1.9a1 1 0 0 1 1 1v3.2a1 1 0 0 1-1 1H6a1.2 1.2 0 0 1-1.2-1.2v-4z" />
+    <path d="M19.2 13.2h-1.9a1 1 0 0 0-1 1v3.2a1 1 0 0 0 1 1H18a1.2 1.2 0 0 0 1.2-1.2v-4z" />
+  </Svg>
+);
+
+export const IconMegaphone = (p) => (
+  <Svg {...p}>
+    <path d="M4 10.4v3.2a1.6 1.6 0 0 0 1.6 1.6H8l6.4 3.6V6.8L8 10.4H5.6A1.6 1.6 0 0 0 4 12z" />
+    <path d="M17.6 9.6a3.6 3.6 0 0 1 0 4.8" />
+  </Svg>
+);
+
+export const IconCalculator = (p) => (
+  <Svg {...p}>
+    <rect x="5.4" y="3.4" width="13.2" height="17.2" rx="2.2" />
+    <path d="M8.4 7.6h7.2" />
+    <path d="M9 12h.01M12 12h.01M15 12h.01M9 16h.01M12 16h.01M15 16h.01" strokeLinecap="round" />
+  </Svg>
+);
+
 /* Каталог обращается к иконке по строковому ключу из контента. */
 const BY_NAME = {
   book: IconBook,
@@ -216,6 +260,12 @@ const BY_NAME = {
   user: IconUser,
   cart: IconCart,
   home: IconHome,
+  layers: IconLayers,
+  heart: IconHeart,
+  refresh: IconRefresh,
+  headset: IconHeadset,
+  megaphone: IconMegaphone,
+  calculator: IconCalculator,
 };
 
 export function Icon({ name, ...rest }) {

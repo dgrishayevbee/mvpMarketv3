@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { Card } from "../components/ui/Card.jsx";
 import { Button } from "../components/ui/Button.jsx";
@@ -9,6 +9,9 @@ import "./AuthPages.css";
 export function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [params] = useSearchParams();
+  // Гейт в чекауте уводит сюда с ?next=/checkout и ждёт возврата.
+  const next = params.get("next") || "/profile";
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
@@ -19,7 +22,7 @@ export function LoginPage() {
       return;
     }
     login(email);
-    navigate("/profile");
+    navigate(next);
   };
 
   return (
@@ -46,7 +49,8 @@ export function LoginPage() {
         </Button>
 
         <span className="auth__foot">
-          Нет аккаунта? <Link to="/register">Зарегистрировать бизнес</Link>
+          Нет аккаунта?{" "}
+          <Link to={`/register?next=${encodeURIComponent(next)}`}>Зарегистрировать бизнес</Link>
         </span>
       </Card>
     </div>

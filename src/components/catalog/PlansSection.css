@@ -1,5 +1,5 @@
 /*
-  Родительская сетка задаёт семь строк — по одной на каждую часть пакета.
+  Родительская сетка задаёт шесть строк — по одной на каждую часть пакета.
   row-gap здесь работает как внутренний отступ колонки: других элементов в
   этих строках нет. column-gap — это зазор между самими пакетами.
 */
@@ -13,7 +13,7 @@
 
 .plan {
   display: grid;
-  grid-row: span 7;
+  grid-row: span 6;
   grid-template-rows: subgrid;
   background: var(--surface);
   border: var(--card-border);
@@ -24,10 +24,6 @@
 
 .plan--featured {
   background: var(--surface-2);
-}
-
-.plan > svg {
-  color: var(--ink);
 }
 
 .plan__name-row {

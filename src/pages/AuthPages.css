@@ -7,9 +7,7 @@
 }
 
 .auth--wide {
-  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.9fr);
-  justify-content: stretch;
-  align-items: start;
+  grid-template-columns: minmax(0, 720px);
 }
 
 .auth__card {
@@ -40,13 +38,317 @@
   color: var(--ink-2);
 }
 
-.auth__aside {
+/* --- мастер регистрации по ЭЦП --- */
+
+.ecp {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ecp__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ecp__head-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: var(--r-sm);
+  background: var(--bg-sunken);
+  color: var(--ink);
+}
+
+.ecp__head-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ecp__head-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.ecp__head-note {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.ecp__options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.ecp__option {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  text-align: left;
+  cursor: pointer;
+}
+
+.ecp__option:hover {
+  border-color: var(--border-strong);
+}
+
+.ecp__option--active,
+.ecp__option--active:hover {
+  border-color: var(--ink);
+  background: var(--surface-2);
+}
+
+.ecp__option-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ecp__option-note {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.ecp__key {
+  display: flex;
+  flex-direction: column;
   gap: 14px;
 }
 
-.auth__aside-title {
-  font-size: 14px;
+.ecp__key-file {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 10px 10px 14px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-md);
+}
+
+.ecp__key-name {
+  font-size: 13px;
+  color: var(--ink-2);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ecp__qr {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/*
+  Заглушка QR: клетка из повторяющегося градиента. Настоящего кода нет —
+  сканировать нечего, это прототип.
+*/
+.ecp__qr-code {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  border-radius: var(--r-sm);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  background-image:
+    repeating-linear-gradient(0deg, var(--ink) 0 8px, transparent 8px 16px),
+    repeating-linear-gradient(90deg, var(--ink) 0 8px, transparent 8px 16px);
+  background-size: 16px 16px;
+  background-position: 8px 8px;
+  opacity: 0.85;
+}
+
+.ecp__qr-note {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.ecp__cert {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px 28px;
+  margin: 0;
+  padding: 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+
+.ecp__cert > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ecp__cert dt {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.ecp__cert dd {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.ecp__biometry {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.ecp__frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 190px;
+  height: 200px;
+  flex-shrink: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+}
+
+.ecp__frame--ok {
+  border-color: var(--success);
+}
+
+.ecp__face {
+  width: 74px;
+  height: 94px;
+  border-radius: 50%;
+  border: 2px dashed var(--border-strong);
+}
+
+.ecp__frame--ok .ecp__face {
+  border-style: solid;
+  border-color: var(--success);
+}
+
+.ecp__frame-hint {
+  font-size: 12px;
+  text-align: center;
+  color: var(--ink-2);
+  padding: 0 12px;
+}
+
+.ecp__stages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ecp__stage {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+.ecp__stage-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  font-size: 11px;
   font-weight: 600;
+}
+
+.ecp__stage--active {
+  color: var(--ink);
+}
+
+.ecp__stage--done {
+  color: var(--ink-2);
+}
+
+.ecp__stage--done .ecp__stage-mark {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.ecp__result {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--success);
+}
+
+.ecp__docs {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ecp__doc {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+}
+
+.ecp__doc:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.ecp__doc-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.ecp__doc-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ecp__doc-note {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.ecp__doc-sign {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+
+.ecp__doc-waiting {
+  font-size: 13px;
+  color: var(--ink-3);
+  white-space: nowrap;
 }
 
 @media (max-width: 900px) {

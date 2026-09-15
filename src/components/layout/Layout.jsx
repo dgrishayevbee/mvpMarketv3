@@ -1,41 +1,38 @@
-import { NavLink, Link, Outlet } from "react-router-dom";
+import { NavLink, Link, Outlet, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useContent } from "../../context/ContentContext.jsx";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { useCart } from "../../context/CartContext.jsx";
 import { SearchField } from "../ui/Field.jsx";
 import { Button } from "../ui/Button.jsx";
-import {
-  IconSearch,
-  IconBell,
-  IconCart,
-  IconHome,
-  IconGrid,
-  IconCard,
-  IconDoc,
-  IconClipboard,
-  IconUser,
-} from "../ui/icons.jsx";
+import { Icon, IconSearch, IconBell, IconCart, IconLayers } from "../ui/icons.jsx";
 import "./Layout.css";
-
-const NAV_ICONS = {
-  home: IconHome,
-  grid: IconGrid,
-  card: IconCard,
-  cart: IconCart,
-  doc: IconDoc,
-  clipboard: IconClipboard,
-  user: IconUser,
-};
 
 /*
   Каркас приложения по Screen Template дизайн-системы: топбар на всю
   ширину, под ним сайдбар 206px и рабочая область. Тень нигде не
   используется — разделяют только границы --border.
+
+  Сайдбар взят из первой версии: три группы — категории каталога, быстрые
+  ссылки и неактивная поддержка. Категория не хранится в состоянии
+  страницы, а лежит в query (`/?category=connect`): сайдбар живёт в
+  каркасе, каталог — на главной, и общий адрес дешевле общего контекста.
+  Побочная польза — на категорию можно дать ссылку.
 */
 export function Layout() {
   const { content } = useContent();
   const { user, logout } = useAuth();
   const { count } = useCart();
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const onCatalog = location.pathname === "/";
+  const activeCategory = onCatalog ? searchParams.get("category") || "all" : null;
+
+  const goCategory = (id) => {
+    navigate(id === "all" ? "/" : `/?category=${id}`);
+  };
+
   const initials = (user?.name || "Гость")
     .split(" ")
     .map((w) => w[0])
@@ -56,6 +53,21 @@ export function Layout() {
         </div>
 
         <div className="topbar__right">
+          <nav className="topbar__nav">
+            {content.topbarNav.map((item) => (
+              <NavLink
+                key={item.id}
+                to={item.to}
+                className={({ isActive }) =>
+                  ["topbar__nav-link", isActive ? "topbar__nav-link--active" : ""]
+                    .filter(Boolean)
+                    .join(" ")
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
           <SearchField
             className="search--compact"
             icon={<IconSearch size={15} />}
@@ -83,23 +95,56 @@ export function Layout() {
 
       <div className="app__body">
         <nav className="sidebar">
-          {content.nav.map((item) => {
-            const NavIcon = NAV_ICONS[item.icon] || IconGrid;
-            return (
-              <NavLink
-                key={item.id}
-                to={item.to}
-                end={item.to === "/"}
-                className={({ isActive }) =>
-                  ["sidebar__item", isActive ? "sidebar__item--active" : ""].filter(Boolean).join(" ")
-                }
+          <div className="sidebar__group">
+            <button
+              type="button"
+              className={[
+                "sidebar__item",
+                activeCategory === "all" ? "sidebar__item--active" : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+              onClick={() => goCategory("all")}
+            >
+              <IconLayers size={15} />
+              <span className="sidebar__label">Все категории</span>
+            </button>
+
+            {content.categories.map((c) => (
+              <button
+                key={c.id}
+                type="button"
+                className={[
+                  "sidebar__item",
+                  activeCategory === c.id ? "sidebar__item--active" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+                onClick={() => goCategory(c.id)}
               >
-                <NavIcon size={15} />
+                <Icon name={c.icon} size={15} />
+                <span className="sidebar__label">{c.label}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="sidebar__group">
+            {content.quickLinks.map((item) => (
+              <Link key={item.id} to={item.to} className="sidebar__item">
+                <Icon name={item.icon} size={15} />
                 <span className="sidebar__label">{item.label}</span>
-                {item.id === "cart" && count > 0 && <span className="sidebar__badge num">{count}</span>}
-              </NavLink>
-            );
-          })}
+              </Link>
+            ))}
+          </div>
+
+          <div className="sidebar__group">
+            {content.supportLinks.map((item) => (
+              <button key={item.id} type="button" className="sidebar__item" disabled>
+                <Icon name={item.icon} size={15} />
+                <span className="sidebar__label">{item.label}</span>
+              </button>
+            ))}
+          </div>
 
           <div className="sidebar__manager">
             <span className="sidebar__manager-text">{content.support.managerNote}</span>

@@ -17,12 +17,12 @@ export function ProductCard({ product, categoryLabel, inCart }) {
       as={Link}
       to={`/product/${product.id}`}
       interactive
-      pad="md"
+      pad="sm"
       className="product-card"
     >
       <div className="product-card__top">
-        <IconTile size={40}>
-          <Icon name={product.icon} size={20} />
+        <IconTile size={34}>
+          <Icon name={product.icon} size={18} />
         </IconTile>
         {product.badge ? (
           <Tag tone="accent">{product.badge}</Tag>
