@@ -4,9 +4,8 @@ import "./AiBanner.css";
 
 /*
   Промо ИИ-подбора. От первой версии остались только смысл и тексты:
-  розово-оранжевый градиент с эмодзи заменён на одну жёлтую плоскость —
-  это единственный цветной блок на странице, и он держится строго, без
-  второго оттенка и без картинок.
+  розово-оранжевый градиент с эмодзи заменён на светлую панель в общем
+  ритме страницы — жёлтый здесь работает оттенками, а не заливкой.
 
   Подсказки не декоративные: клик подставляет фразу в поиск каталога и
   прокручивает к результатам, поэтому это кнопки, а не надписи.
@@ -19,7 +18,7 @@ export function AiBanner({ banner, onSuggestion, onStart }) {
       <div className="ai-banner__main">
         <h2 className="ai-banner__title serif">{banner.title}</h2>
         <p className="ai-banner__subtitle">{banner.subtitle}</p>
-        <Button variant="ink" onClick={onStart} className="ai-banner__cta">
+        <Button onClick={onStart} className="ai-banner__cta">
           <IconSparkle size={16} />
           {banner.ctaLabel}
         </Button>

@@ -1,12 +1,19 @@
+/*
+  Панель светлая, как остальные блоки страницы: белая поверхность и та же
+  граница, что у карточек. Жёлтый здесь работает оттенками — мягкая
+  подсветка в углах, подложка под иконками подсказок и основная кнопка.
+  Сплошной --accent на всю панель пробовали: под текстом он честные
+  11.5:1, но крупной плоскостью перетягивает страницу на себя.
+*/
 .ai-banner {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
   gap: 32px;
   align-items: center;
   padding: 36px;
+  border: var(--card-border);
   border-radius: var(--r-lg);
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: var(--accent-wash), var(--surface);
 }
 
 .ai-banner__main {
@@ -23,6 +30,7 @@
   font-size: 34px;
   line-height: 1.12;
   letter-spacing: -0.02em;
+  color: var(--ink);
 }
 
 .ai-banner__subtitle {
@@ -30,7 +38,7 @@
   max-width: 46ch;
   font-size: 15px;
   line-height: 1.55;
-  color: var(--on-accent-ink-2);
+  color: var(--ink-2);
 }
 
 .ai-banner__cta.btn {
@@ -49,10 +57,10 @@
   gap: 12px;
   width: 100%;
   padding: 10px 16px 10px 10px;
-  border: 1px solid var(--on-accent-border);
+  border: 1px solid var(--border);
   border-radius: var(--r-pill);
-  background: var(--on-accent-surface);
-  color: var(--accent-ink);
+  background: var(--surface);
+  color: var(--ink);
   font-family: var(--font-sans);
   font-size: 14px;
   text-align: left;
@@ -61,8 +69,8 @@
 }
 
 .ai-banner__suggestion:hover {
-  background: var(--on-accent-surface-hover);
-  border-color: var(--surface);
+  background: var(--accent-soft);
+  border-color: var(--accent-soft-border);
 }
 
 .ai-banner__suggestion:focus-visible {
@@ -70,6 +78,7 @@
   outline-offset: 2px;
 }
 
+/* Жёлтая подложка под линейной иконкой — мелкая деталь, а не плашка. */
 .ai-banner__suggestion-icon {
   display: inline-flex;
   align-items: center;
@@ -78,7 +87,7 @@
   height: 30px;
   flex: 0 0 30px;
   border-radius: 50%;
-  background: var(--surface);
+  background: var(--accent-soft);
   color: var(--ink);
 }
 
