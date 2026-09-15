@@ -10,6 +10,7 @@ import { UIProvider } from "./context/UIContext.jsx";
 import { Layout } from "./components/layout/Layout.jsx";
 import { HomePage } from "./pages/HomePage.jsx";
 import { ProductPage } from "./pages/ProductPage.jsx";
+import { PlanPage } from "./pages/PlanPage.jsx";
 import { CartPage } from "./pages/CartPage.jsx";
 import { CheckoutPage } from "./pages/CheckoutPage.jsx";
 import { LoginPage } from "./pages/LoginPage.jsx";
@@ -50,6 +51,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/plan/:id" element={<PlanPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/login" element={<LoginPage />} />

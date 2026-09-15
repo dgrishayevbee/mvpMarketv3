@@ -11,13 +11,17 @@ import "./PlansSection.css";
   чеклист «Всё из …, плюс:». Декоративная иконка над названием убрана —
   колонка начинается сразу с названия.
 
+  Кнопка не кладёт пакет в корзину, а открывает его страницу — как плитка
+  решения. В колонке видно только прибавку к младшему пакету, а полный
+  состав и условия живут на странице.
+
   Каждая часть — отдельный элемент общей сетки, а не вложенный блок: колонки
   делят одни и те же строки (subgrid), поэтому цены, кнопки и чеклисты стоят
   на одной линии независимо от того, что у одного пакета есть бейдж, а у
   другого сноска в две строки. Вложенные обёртки это ломали бы: высота
   выравнивалась бы только у обёрток, а не у строк внутри них.
 */
-export function PlansSection({ plans, onChoose, sectionRef }) {
+export function PlansSection({ plans, onOpen, sectionRef }) {
   return (
     <section className="section" id="plans" ref={sectionRef}>
       <SectionHead title={plans.title} subtitle={plans.subtitle} />
@@ -40,7 +44,7 @@ export function PlansSection({ plans, onChoose, sectionRef }) {
 
               <span className="plan__note">{plan.priceNote}</span>
 
-              <Button full variant={plan.ctaVariant || "primary"} onClick={() => onChoose(plan)}>
+              <Button full variant={plan.ctaVariant || "primary"} onClick={() => onOpen(plan)}>
                 {plan.cta}
               </Button>
 

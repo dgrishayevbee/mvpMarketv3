@@ -68,7 +68,7 @@ function scoreOf(product, queryStems) {
 export function HomePage() {
   const { content } = useContent();
   const { all } = useProducts();
-  const { addItem, items } = useCart();
+  const { items } = useCart();
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
@@ -137,17 +137,9 @@ export function HomePage() {
 
   const inCart = (id) => items.some((i) => i.id === id);
 
-  const choosePlan = (plan) => {
-    addItem({
-      id: plan.id,
-      title: `Тариф «${plan.name}»`,
-      price: plan.price,
-      seller: "Beeline Business",
-      subtitle: plan.audience,
-      icon: "phone",
-    });
-    navigate("/cart");
-  };
+  // Кнопка пакета ведёт на его страницу, а не в корзину: в колонке видно
+  // только прибавку к младшему пакету, полный состав — на странице.
+  const openPlan = (plan) => navigate(`/plan/${plan.id}`);
 
   return (
     <>
@@ -217,7 +209,7 @@ export function HomePage() {
         )}
       </section>
 
-      <PlansSection plans={content.plans} onChoose={choosePlan} sectionRef={plansRef} />
+      <PlansSection plans={content.plans} onOpen={openPlan} sectionRef={plansRef} />
 
       <AiBanner
         banner={content.aiBanner}
