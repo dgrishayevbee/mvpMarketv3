@@ -154,7 +154,7 @@ export function Layout() {
           </div>
         </nav>
 
-        <main className="content">
+        <main className={["content", onCatalog ? "content--home" : ""].filter(Boolean).join(" ")}>
           <Outlet />
         </main>
       </div>
