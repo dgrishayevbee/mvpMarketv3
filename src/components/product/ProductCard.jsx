@@ -6,37 +6,45 @@ import { Icon } from "../ui/icons.jsx";
 import "./ProductCard.css";
 
 /*
-  Плитка каталога. Намеренно минималистичная: иконка, лейбл, название и одно
-  предложение о пользе — по правилу копирайта ДС, без цены и кнопки. Цена,
-  состав и подключение живут на странице решения, куда ведёт вся карточка
-  целиком.
+  Плитка каталога. Строение: крупная плитка-иконка сверху, название, одно
+  предложение о пользе и категория внизу — мелкой строкой с иконкой, а не
+  пилюлей. Категория прижата к низу карточки, поэтому в ряду все подписи
+  стоят на одной линии независимо от длины описания.
+
+  Цены и кнопки тут по-прежнему нет: они на странице решения, куда ведёт
+  вся карточка целиком.
 */
-export function ProductCard({ product, categoryLabel, inCart }) {
+export function ProductCard({ product, category, inCart }) {
   return (
     <Card
       as={Link}
       to={`/product/${product.id}`}
       interactive
-      pad="sm"
+      pad="md"
       className="product-card"
     >
       <div className="product-card__top">
-        <IconTile size={34}>
-          <Icon name={product.icon} size={18} />
+        <IconTile size={48} tone="solid">
+          <Icon name={product.icon} size={24} />
         </IconTile>
         {product.badge ? (
           <Tag tone="accent">{product.badge}</Tag>
         ) : inCart ? (
           <Status tone="success">В корзине</Status>
-        ) : (
-          categoryLabel && <Tag tone="sunken">{categoryLabel}</Tag>
-        )}
+        ) : null}
       </div>
 
       <div className="product-card__text">
         <span className="product-card__title">{product.title}</span>
         <span className="product-card__subtitle">{product.subtitle}</span>
       </div>
+
+      {category && (
+        <span className="product-card__category">
+          <Icon name={category.icon} size={15} />
+          {category.label}
+        </span>
+      )}
     </Card>
   );
 }

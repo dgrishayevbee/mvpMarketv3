@@ -2,10 +2,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--border);
   border-radius: var(--r-md);
+}
+
+.icon-tile--outline {
+  border: 1px solid var(--border);
   color: var(--ink);
   background: var(--surface);
+}
+
+.icon-tile--solid {
+  border: 1px solid var(--ink);
+  color: var(--surface);
+  background: var(--ink);
 }
 
 .icon-tile--muted {

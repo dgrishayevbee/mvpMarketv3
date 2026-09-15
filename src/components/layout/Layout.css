@@ -127,11 +127,23 @@
   cursor: pointer;
 }
 
+/*
+  Свечение лежит на всей рабочей полосе, а не на .content: у .content есть
+  max-width, и на широком экране градиент обрывался бы по её краю.
+  Сайдбар со своим --surface перекрывает подсветку сам.
+
+  Смещения в пикселях, а не в процентах: проценты считаются от высоты
+  блока, а она равна высоте страницы — на длинном экране свечение уехало
+  бы вниз. background-attachment: fixed тоже не подходит, с ним подсветка
+  приклеивается к окну и ползёт за скроллом.
+*/
 .app__body {
   display: flex;
   align-items: stretch;
   flex: 1 1 auto;
   min-height: 0;
+  background: var(--bg-glow), var(--bg);
+  background-repeat: no-repeat;
 }
 
 .sidebar {

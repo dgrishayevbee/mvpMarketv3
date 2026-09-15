@@ -1,6 +1,6 @@
 .product-card {
-  gap: 12px;
-  padding: 16px;
+  gap: 16px;
+  padding: 20px;
 }
 
 .product-card__top {
@@ -17,27 +17,41 @@
 }
 
 .product-card__title {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--ink);
 }
 
 .product-card__subtitle {
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--ink-2);
 }
 
 /*
-  auto-fill, а не auto-fit: пустые треки сетка сохраняет, поэтому хвост из
-  двух карточек в последнем ряду остаётся той же ширины, что и остальные,
-  а не растягивается на всю строку. При 250px на рабочей области 1116px
-  выходит четыре колонки.
+  margin-top: auto прижимает категорию к низу, поэтому в ряду подписи
+  стоят на одной линии при разной длине описаний. Работает потому, что
+  .card — flex-колонка, а сетка тянет карточки на равную высоту.
+*/
+.product-card__category {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 4px;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/*
+  Три колонки: карточка стала выше и крупнее, на четырёх описание рвалось
+  на четыре строки. auto-fill сохраняет пустые треки — хвост ряда не
+  растягивается.
 */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 12px;
   align-items: stretch;
 }

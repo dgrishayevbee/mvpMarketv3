@@ -57,9 +57,9 @@ export function HomePage() {
   // Категорию задаёт сайдбар через query — см. комментарий в Layout.jsx.
   const category = searchParams.get("category") || "all";
 
-  const categoryLabel = useMemo(() => {
-    const map = Object.fromEntries(content.categories.map((c) => [c.id, c.label]));
-    return (id) => map[id] || "";
+  const categoryById = useMemo(() => {
+    const map = Object.fromEntries(content.categories.map((c) => [c.id, c]));
+    return (id) => map[id] || null;
   }, [content.categories]);
 
   const visible = useMemo(() => {
@@ -157,7 +157,7 @@ export function HomePage() {
               <ProductCard
                 key={product.id}
                 product={product}
-                categoryLabel={categoryLabel(product.category)}
+                category={categoryById(product.category)}
                 inCart={inCart(product.id)}
               />
             ))}
