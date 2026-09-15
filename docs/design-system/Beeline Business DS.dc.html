@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,400&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#F7F5F1; --bg-sunken:#EFEBE3; --surface:#FFFFFF; --surface-2:#FBFAF7;
+  --border:#E7E1D7; --border-strong:#CFC8BA;
+  --ink:#1A1A18; --ink-2:#57534C; --ink-3:#8B8579;
+  --accent:#141413; --accent-hover:#333230; --accent-ink:#FFFFFF;
+  --brand:#FFCC00; --brand-ink:#1A1A18;
+  --success:#2C6A4C; --success-bg:#E7F0EA; --warning:#8A5710; --warning-bg:#FAEFD9;
+  --error:#9A2A25; --error-bg:#F8E8E5; --info:#2D4F7A; --info-bg:#E8EEF6;
+  --font-serif:"Literata",Georgia,serif; --font-sans:"Golos Text","Helvetica Neue",sans-serif;
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+  --shadow-sm:0 1px 2px rgba(26,26,24,.04); --shadow-md:0 2px 6px rgba(26,26,24,.05),0 14px 30px -14px rgba(26,26,24,.12);
+  --card-border:1px solid var(--border); --card-shadow:none;
+  --pad-card:28px; --row-h:44px;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;text-wrap:pretty;}
+a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--border-strong);text-underline-offset:3px;}
+a:hover{color:var(--accent);text-decoration-color:var(--ink-3);}
+</style>
+</helmet>
+
+<div style="display:flex;gap:0;align-items:flex-start;min-height:100vh;">
+
+  <aside style="position:sticky;top:0;flex:0 0 246px;align-self:stretch;min-height:100vh;padding:28px 20px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;gap:26px;">
+    <div style="display:flex;flex-direction:column;gap:4px;">
+      <div style="display:flex;align-items:center;gap:9px;">
+        <div style="width:22px;height:22px;border-radius:5px;background:var(--brand);"></div>
+        <span style="font-family:var(--font-sans);font-size:14px;font-weight:600;letter-spacing:-0.01em;">Beeline Business</span>
+      </div>
+      <span style="font-size:12px;color:var(--ink-3);padding-left:31px;">Design system · v0.1</span>
+    </div>
+
+    <nav style="display:flex;flex-direction:column;gap:2px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:6px 10px;">Токены</div>
+      <a href="#colors" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:14px;text-decoration:none;color:var(--ink-2);" style-hover="background:var(--bg-sunken);color:var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6"></circle><path d="M8 2v12M2 8h12"></path></svg>Цвет</a>
+      <a href="#type" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:14px;text-decoration:none;color:var(--ink-2);" style-hover="background:var(--bg-sunken);color:var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 4h10M8 4v9M5.5 13h5"></path></svg>Типографика</a>
+      <a href="#space" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:14px;text-decoration:none;color:var(--ink-2);" style-hover="background:var(--bg-sunken);color:var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3v10M14 3v10M4.5 8h7M4.5 8l2-2M4.5 8l2 2M11.5 8l-2-2M11.5 8l-2 2"></path></svg>Сетка и тени</a>
+
+      <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:14px 10px 6px;">Компоненты</div>
+      <a href="#buttons" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:14px;text-decoration:none;color:var(--ink-2);" style-hover="background:var(--bg-sunken);color:var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="5" width="12" height="6" rx="3"></rect></svg>Кнопки</a>
+      <a href="#inputs" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:14px;text-decoration:none;color:var(--ink-2);" style-hover="background:var(--bg-sunken);color:var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="4.5" width="12" height="7" rx="2"></rect><path d="M5 6.5v3"></path></svg>Поля и формы</a>
+      <a href="#status" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:14px;text-decoration:none;color:var(--ink-2);" style-hover="background:var(--bg-sunken);color:var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="5.5"></circle><path d="M8 5.5v3M8 10.6h.01"></path></svg>Статусы и списки</a>
+      <a href="#cards" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:14px;text-decoration:none;color:var(--ink-2);" style-hover="background:var(--bg-sunken);color:var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="3" width="5" height="10" rx="1.5"></rect><rect x="9" y="3" width="5" height="10" rx="1.5"></rect></svg>Карточки</a>
+
+      <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:14px 10px 6px;">Экраны</div>
+      <a href="#catalog" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:14px;text-decoration:none;color:var(--ink-2);" style-hover="background:var(--bg-sunken);color:var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2.5" y="2.5" width="4.5" height="4.5" rx="1"></rect><rect x="9" y="2.5" width="4.5" height="4.5" rx="1"></rect><rect x="2.5" y="9" width="4.5" height="4.5" rx="1"></rect><rect x="9" y="9" width="4.5" height="4.5" rx="1"></rect></svg>Каталог</a>
+      <a href="#form" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:14px;text-decoration:none;color:var(--ink-2);" style-hover="background:var(--bg-sunken);color:var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="2" width="10" height="12" rx="2"></rect><path d="M5.5 6h5M5.5 9h3"></path></svg>Заявка</a>
+      <a href="#tariff" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:14px;text-decoration:none;color:var(--ink-2);" style-hover="background:var(--bg-sunken);color:var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2.5 6.5 8 2l5.5 4.5V13a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1z"></path><path d="M6.3 9.5h3.4M8 8v3"></path></svg>Тариф</a>
+      <a href="#partners" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:14px;text-decoration:none;color:var(--ink-2);" style-hover="background:var(--bg-sunken);color:var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="5" height="5" rx="1.2"></rect><rect x="9" y="2" width="5" height="5" rx="1.2"></rect><rect x="2" y="9" width="5" height="5" rx="1.2"></rect><path d="M9 11.5h5"></path></svg>Партнёры</a>
+      <a href="#plans" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:14px;text-decoration:none;color:var(--ink-2);" style-hover="background:var(--bg-sunken);color:var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 13V6M8 13V3M13 13V8"></path></svg>Планы</a>
+      <a href="#cabinet" style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:14px;text-decoration:none;color:var(--ink-2);" style-hover="background:var(--bg-sunken);color:var(--ink);">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2.5" width="12" height="11" rx="2"></rect><path d="M2 6h12M6 6v7.5"></path></svg>Личный кабинет</a>
+    </nav>
+
+    <div style="margin-top:auto;padding:14px;background:var(--bg-sunken);border-radius:var(--r-md);display:flex;flex-direction:column;gap:6px;">
+      <span style="font-size:12px;color:var(--ink-2);">Все значения — токены. Компоненты не хардкодят цвета и отступы.</span>
+    </div>
+  </aside>
+
+  <main style="flex:1 1 0;min-width:0;padding:56px 48px 96px;max-width:1180px;display:flex;flex-direction:column;gap:72px;">
+
+    <header style="display:flex;flex-direction:column;gap:16px;max-width:720px;">
+      <span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);">Тестовая версия</span>
+      <h1 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:52px;line-height:1.05;letter-spacing:-0.02em;">Дизайн-система B2B маркетплейса</h1>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:var(--ink-2);">Рабочий интерфейс для ИП и самозанятых: высокая плотность информации в спокойной editorial-подаче. Тёплый фон, белые поверхности, чёрный акцент, контраст serif и sans.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;padding-top:4px;">
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:var(--r-pill);border:1px solid var(--border);background:var(--surface);font-size:13px;color:var(--ink-2);white-space:nowrap;white-space:nowrap;">Literata · заголовки</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:var(--r-pill);border:1px solid var(--border);background:var(--surface);font-size:13px;color:var(--ink-2);white-space:nowrap;white-space:nowrap;">Golos Text · UI</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:var(--r-pill);border:1px solid var(--border);background:var(--surface);font-size:13px;color:var(--ink-2);white-space:nowrap;white-space:nowrap;">Линейные иконки · stroke 1.4</span>
+      </div>
+    </header>
+
+    <section id="colors" style="display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Цвет</h2>
+        <p style="margin:0;font-size:14px;color:var(--ink-2);">Фон тёплый, поверхности чистые. Чёрный — единственный акцент действия; жёлтый Beeline только как бренд-маркер, не как кнопка.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;">
+        <div style="background:var(--surface);border:var(--card-border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--card-shadow);">
+          <div style="height:64px;background:var(--bg);border-bottom:1px solid var(--border);"></div>
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:2px;"><span style="font-size:13px;font-weight:500;">--bg</span><span style="font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;">#F7F5F1</span></div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--card-shadow);">
+          <div style="height:64px;background:var(--bg-sunken);border-bottom:1px solid var(--border);"></div>
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:2px;"><span style="font-size:13px;font-weight:500;">--bg-sunken</span><span style="font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;">#EFEBE3</span></div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--card-shadow);">
+          <div style="height:64px;background:var(--surface);border-bottom:1px solid var(--border);"></div>
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:2px;"><span style="font-size:13px;font-weight:500;">--surface</span><span style="font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;">#FFFFFF</span></div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--card-shadow);">
+          <div style="height:64px;background:var(--border);border-bottom:1px solid var(--border);"></div>
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:2px;"><span style="font-size:13px;font-weight:500;">--border</span><span style="font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;">#E7E1D7</span></div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--card-shadow);">
+          <div style="height:64px;background:var(--accent);"></div>
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:2px;"><span style="font-size:13px;font-weight:500;">--accent</span><span style="font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;">#141413</span></div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--card-shadow);">
+          <div style="height:64px;background:var(--ink-2);"></div>
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:2px;"><span style="font-size:13px;font-weight:500;">--ink-2</span><span style="font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;">#57534C</span></div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--card-shadow);">
+          <div style="height:64px;background:var(--ink-3);"></div>
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:2px;"><span style="font-size:13px;font-weight:500;">--ink-3</span><span style="font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;">#8B8579</span></div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--card-shadow);">
+          <div style="height:64px;background:var(--brand);"></div>
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:2px;"><span style="font-size:13px;font-weight:500;">--brand</span><span style="font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;">#FFCC00 · бренд-маркер</span></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;">
+        <div style="padding:16px;border-radius:var(--r-md);background:var(--success-bg);border:1px solid rgba(44,106,76,.18);display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:13px;font-weight:600;color:var(--success);">Success · #2C6A4C</span>
+          <span style="font-size:12px;color:var(--ink-2);">Подключено, оплачено, готово</span>
+        </div>
+        <div style="padding:16px;border-radius:var(--r-md);background:var(--warning-bg);border:1px solid rgba(138,87,16,.18);display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:13px;font-weight:600;color:var(--warning);">Warning · #8A5710</span>
+          <span style="font-size:12px;color:var(--ink-2);">Ждёт документов, скоро истекает</span>
+        </div>
+        <div style="padding:16px;border-radius:var(--r-md);background:var(--error-bg);border:1px solid rgba(154,42,37,.18);display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:13px;font-weight:600;color:var(--error);">Error · #9A2A25</span>
+          <span style="font-size:12px;color:var(--ink-2);">Отклонено, ошибка оплаты</span>
+        </div>
+        <div style="padding:16px;border-radius:var(--r-md);background:var(--info-bg);border:1px solid rgba(45,79,122,.18);display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:13px;font-weight:600;color:var(--info);">Info · #2D4F7A</span>
+          <span style="font-size:12px;color:var(--ink-2);">На рассмотрении, черновик</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="type" style="display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Типографика</h2>
+        <p style="margin:0;font-size:14px;color:var(--ink-2);">Serif — заголовки и метрики. Цены и суммы — sans 600 с табличными цифрами: в плотных строках они читаются быстрее. Sans — весь остальной интерфейс.</p>
+      </div>
+      <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:var(--pad-card);display:flex;flex-direction:column;gap:20px;">
+        <div style="display:flex;gap:24px;align-items:baseline;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:18px;">
+          <span style="flex:0 0 148px;font-size:12px;color:var(--ink-3);">display · 52/1.05</span>
+          <span style="font-family:var(--font-serif);font-weight:400;font-size:52px;line-height:1.05;letter-spacing:-0.02em;">Маркетплейс</span>
+        </div>
+        <div style="display:flex;gap:24px;align-items:baseline;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:18px;">
+          <span style="flex:0 0 148px;font-size:12px;color:var(--ink-3);">h1 · 38/1.15</span>
+          <span style="font-family:var(--font-serif);font-weight:400;font-size:38px;line-height:1.15;letter-spacing:-0.02em;">Тариф «Дело»</span>
+        </div>
+        <div style="display:flex;gap:24px;align-items:baseline;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:18px;">
+          <span style="flex:0 0 148px;font-size:12px;color:var(--ink-3);">h2 · 30/1.2</span>
+          <span style="font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Заголовок раздела</span>
+        </div>
+        <div style="display:flex;gap:24px;align-items:baseline;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:18px;">
+          <span style="flex:0 0 148px;font-size:12px;color:var(--ink-3);">h3 · 20/1.3 sans 600</span>
+          <span style="font-size:20px;font-weight:600;letter-spacing:-0.01em;">Заголовок карточки</span>
+        </div>
+        <div style="display:flex;gap:24px;align-items:baseline;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:18px;">
+          <span style="flex:0 0 148px;font-size:12px;color:var(--ink-3);">body · 15/1.55</span>
+          <span style="flex:1 1 320px;min-width:0;font-size:15px;color:var(--ink-2);">Базовый текст интерфейса: описания продуктов, условия подключения, подсказки в формах.</span>
+        </div>
+        <div style="display:flex;gap:24px;align-items:baseline;flex-wrap:wrap;">
+          <span style="flex:0 0 148px;font-size:12px;color:var(--ink-3);">caption · 12/1.4</span>
+          <span style="font-size:12px;color:var(--ink-3);">Подпись, метаданные, юридические сноски</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:20px;display:flex;flex-direction:column;gap:4px;">
+          <span style="font-family:var(--font-serif);font-size:40px;line-height:1;letter-spacing:-0.02em;">1 290 ₸</span>
+          <span style="font-size:12px;color:var(--ink-3);">Метрика — serif</span>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:20px;display:flex;flex-direction:column;gap:4px;">
+          <span style="font-family:var(--font-serif);font-size:40px;line-height:1;letter-spacing:-0.02em;">98,4%</span>
+          <span style="font-size:12px;color:var(--ink-3);">Метрика в личном кабинете</span>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:20px;display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:24px;font-weight:600;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;">7 900 ₸</span>
+          <span style="font-size:12px;color:var(--ink-3);">Цена — sans 600, tabular</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="space" style="display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Сетка, радиусы, тени</h2>
+        <p style="margin:0;font-size:14px;color:var(--ink-2);">Шаг 4px. Внутри карточек — 20–28px, между блоками — 32–72px. По умолчанию карточка без тени: только тонкая рамка, тень появляется на hover и в оверлеях.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;">
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:var(--pad-card);display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:13px;font-weight:600;">Spacing</span>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:12px;"><span style="flex:0 0 56px;font-size:12px;color:var(--ink-3);">4 · xs</span><div style="height:10px;width:4px;background:var(--accent);border-radius:2px;"></div></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="flex:0 0 56px;font-size:12px;color:var(--ink-3);">8 · sm</span><div style="height:10px;width:8px;background:var(--accent);border-radius:2px;"></div></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="flex:0 0 56px;font-size:12px;color:var(--ink-3);">12 · md</span><div style="height:10px;width:12px;background:var(--accent);border-radius:2px;"></div></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="flex:0 0 56px;font-size:12px;color:var(--ink-3);">16 · lg</span><div style="height:10px;width:16px;background:var(--accent);border-radius:2px;"></div></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="flex:0 0 56px;font-size:12px;color:var(--ink-3);">24 · xl</span><div style="height:10px;width:24px;background:var(--accent);border-radius:2px;"></div></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="flex:0 0 56px;font-size:12px;color:var(--ink-3);">32 · 2xl</span><div style="height:10px;width:32px;background:var(--accent);border-radius:2px;"></div></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="flex:0 0 56px;font-size:12px;color:var(--ink-3);">48 · 3xl</span><div style="height:10px;width:48px;background:var(--accent);border-radius:2px;"></div></div>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:var(--pad-card);display:flex;flex-direction:column;gap:14px;">
+          <span style="font-size:13px;font-weight:600;">Радиусы</span>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;">
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:center;"><div style="width:56px;height:56px;background:var(--bg-sunken);border:1px solid var(--border);border-radius:var(--r-sm);"></div><span style="font-size:12px;color:var(--ink-3);">8 · поля</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:center;"><div style="width:56px;height:56px;background:var(--bg-sunken);border:1px solid var(--border);border-radius:var(--r-md);"></div><span style="font-size:12px;color:var(--ink-3);">12 · блоки</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:center;"><div style="width:56px;height:56px;background:var(--bg-sunken);border:1px solid var(--border);border-radius:var(--r-lg);"></div><span style="font-size:12px;color:var(--ink-3);">16 · карточки</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:center;"><div style="width:56px;height:56px;background:var(--bg-sunken);border:1px solid var(--border);border-radius:var(--r-pill);"></div><span style="font-size:12px;color:var(--ink-3);">pill · бейджи</span></div>
+          </div>
+          <span style="font-size:13px;font-weight:600;padding-top:6px;">Тени</span>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;">
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:center;"><div style="width:96px;height:56px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--shadow-sm);"></div><span style="font-size:12px;color:var(--ink-3);">без тени · по умолчанию</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:center;"><div style="width:96px;height:56px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--shadow-md);"></div><span style="font-size:12px;color:var(--ink-3);">shadow-md · hover</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:var(--pad-card);display:flex;flex-direction:column;gap:14px;">
+        <span style="font-size:13px;font-weight:600;">Иконки · 1.25px stroke, без заливки</span>
+        <div style="display:flex;gap:18px;flex-wrap:wrap;color:var(--ink);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 9h18"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M5 20v-9l7-5 7 5v9"></path><path d="M10 20v-5h4v5"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><circle cx="12" cy="8.5" r="3.5"></circle><path d="M5 20c0-3.5 3.2-5.5 7-5.5s7 2 7 5.5"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M4 7h16M4 12h16M4 17h10"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M4 6h16v12H4z"></path><path d="m4 7 8 6 8-6"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M7 4h7l4 4v12H7z"></path><path d="M14 4v4h4M10 13h5M10 16h4"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M12 3 4 7v5c0 5 3.4 8 8 9 4.6-1 8-4 8-9V7z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M4 18V9M10 18V5M16 18v-6M4 20h16"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M14 4h6v6M20 4 10 14M10 6H5v13h13v-5"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M12 5v14M5 12h14"></path></svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="buttons" style="display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Кнопки</h2>
+        <p style="margin:0;font-size:14px;color:var(--ink-2);">Одна primary на экран. Высота 44px по умолчанию, 36px в плотных строках таблиц.</p>
+      </div>
+      <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:var(--pad-card);display:flex;flex-direction:column;gap:20px;">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+          <button style="height:var(--row-h);padding:0 20px;border:none;border-radius:var(--r-sm);background:var(--accent);color:var(--accent-ink);font-family:var(--font-sans);font-size:15px;font-weight:500;white-space:nowrap;cursor:pointer;transition:background .15s;" style-hover="background:var(--accent-hover);">Подключить</button>
+          <button style="height:var(--row-h);padding:0 20px;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);color:var(--ink);font-family:var(--font-sans);font-size:15px;font-weight:500;white-space:nowrap;cursor:pointer;transition:background .15s;" style-hover="background:var(--bg-sunken);">Подробнее</button>
+          <button style="height:var(--row-h);padding:0 14px;border:none;border-radius:var(--r-sm);background:transparent;color:var(--ink-2);font-family:var(--font-sans);font-size:15px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--bg-sunken);color:var(--ink);">Отмена</button>
+          <button style="height:var(--row-h);padding:0 20px;border:none;border-radius:var(--r-sm);background:var(--bg-sunken);color:var(--ink-3);font-family:var(--font-sans);font-size:15px;font-weight:500;white-space:nowrap;cursor:not-allowed;">Недоступно</button>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--border);padding-top:20px;">
+          <button style="height:36px;padding:0 14px;border:none;border-radius:var(--r-sm);background:var(--accent);color:var(--accent-ink);font-family:var(--font-sans);font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--accent-hover);">Small primary</button>
+          <button style="height:36px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);color:var(--ink);font-family:var(--font-sans);font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--bg-sunken);">Small secondary</button>
+          <button style="height:36px;padding:0 14px;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);color:var(--ink);font-family:var(--font-sans);font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--bg-sunken);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 4h7l4 4v12H7z"></path><path d="M14 4v4h4"></path></svg>Скачать счёт</button>
+          <button style="width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);color:var(--ink-2);cursor:pointer;" style-hover="background:var(--bg-sunken);color:var(--ink);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="5" r="1.4"></circle><circle cx="12" cy="12" r="1.4"></circle><circle cx="12" cy="19" r="1.4"></circle></svg></button>
+          <a href="#buttons" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--border-strong);padding-bottom:1px;" style-hover="border-color:var(--ink);">Все условия
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="inputs" style="display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Поля и формы</h2>
+        <p style="margin:0;font-size:14px;color:var(--ink-2);">Метка сверху, подсказка снизу, ошибка заменяет подсказку. Фокус — тонкая чёрная рамка без цветного свечения.</p>
+      </div>
+      <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:var(--pad-card);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
+        <label style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-size:13px;font-weight:500;">Название ИП</span>
+          <input type="text" placeholder="ИП Ахметов А." style="height:var(--row-h);padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);font-family:var(--font-sans);font-size:15px;color:var(--ink);outline:none;" style-focus="border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);" />
+          <span style="font-size:12px;color:var(--ink-3);">Как в свидетельстве о регистрации</span>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-size:13px;font-weight:500;">БИН / ИИН</span>
+          <input type="text" value="920415300" style="height:var(--row-h);padding:0 12px;border:1px solid var(--error);border-radius:var(--r-sm);background:var(--surface);font-family:var(--font-sans);font-size:15px;color:var(--ink);outline:none;font-variant-numeric:tabular-nums;" />
+          <span style="font-size:12px;color:var(--error);display:inline-flex;align-items:center;gap:5px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16h.01"></path></svg>Нужно 12 цифр</span>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-size:13px;font-weight:500;">Вид деятельности</span>
+          <select style="height:var(--row-h);padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);font-family:var(--font-sans);font-size:15px;color:var(--ink);outline:none;appearance:none;">
+            <option>Розничная торговля</option>
+            <option>Услуги</option>
+            <option>Логистика</option>
+          </select>
+          <span style="font-size:12px;color:var(--ink-3);">Влияет на подбор тарифа</span>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-size:13px;font-weight:500;">Телефон</span>
+          <div style="display:flex;align-items:center;gap:0;height:var(--row-h);border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);overflow:hidden;">
+            <span style="padding:0 12px;height:100%;display:flex;align-items:center;background:var(--bg-sunken);border-right:1px solid var(--border);font-size:14px;color:var(--ink-2);">+7</span>
+            <input type="text" placeholder="700 000 00 00" style="flex:1;min-width:0;height:100%;border:none;padding:0 12px;font-family:var(--font-sans);font-size:15px;outline:none;background:transparent;" />
+          </div>
+          <span style="font-size:12px;color:var(--ink-3);">Пришлём код подтверждения</span>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;grid-column:1/-1;">
+          <span style="font-size:13px;font-weight:500;">Комментарий</span>
+          <textarea rows="3" placeholder="Сколько сотрудников, какие задачи" style="padding:10px 12px;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);font-family:var(--font-sans);font-size:15px;color:var(--ink);outline:none;resize:vertical;" style-focus="border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);"></textarea>
+        </label>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;grid-column:1/-1;border-top:1px solid var(--border);padding-top:18px;">
+          <label style="display:inline-flex;align-items:center;gap:9px;font-size:14px;cursor:pointer;">
+            <span style="width:18px;height:18px;border-radius:4px;background:var(--accent);display:inline-flex;align-items:center;justify-content:center;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="m5 12.5 4.5 4.5L19 7"></path></svg></span>Я — действующий ИП</label>
+          <label style="display:inline-flex;align-items:center;gap:9px;font-size:14px;cursor:pointer;color:var(--ink-2);">
+            <span style="width:18px;height:18px;border-radius:4px;border:1px solid var(--border-strong);background:var(--surface);"></span>Нужна помощь с регистрацией</label>
+          <label style="display:inline-flex;align-items:center;gap:9px;font-size:14px;cursor:pointer;">
+            <span style="width:18px;height:18px;border-radius:50%;border:1px solid var(--accent);display:inline-flex;align-items:center;justify-content:center;"><span style="width:9px;height:9px;border-radius:50%;background:var(--accent);"></span></span>Подписка</label>
+          <label style="display:inline-flex;align-items:center;gap:9px;font-size:14px;cursor:pointer;color:var(--ink-2);">
+            <span style="width:18px;height:18px;border-radius:50%;border:1px solid var(--border-strong);"></span>Разовая оплата</label>
+          <label style="display:inline-flex;align-items:center;gap:9px;font-size:14px;cursor:pointer;">
+            <span style="width:34px;height:20px;border-radius:var(--r-pill);background:var(--accent);display:inline-flex;align-items:center;padding:2px;justify-content:flex-end;"><span style="width:16px;height:16px;border-radius:50%;background:#fff;"></span></span>Автоплатёж</label>
+        </div>
+      </div>
+    </section>
+
+    <section id="status" style="display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Статусы, бейджи, списки</h2>
+        <p style="margin:0;font-size:14px;color:var(--ink-2);">Статус — точка + текст, без крупных плашек. Чеклисты — тонкая галочка, без иконок-заливок.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:var(--pad-card);display:flex;flex-direction:column;gap:14px;">
+          <span style="font-size:13px;font-weight:600;">Бейджи</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--r-pill);background:var(--success-bg);color:var(--success);font-size:12px;font-weight:500;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>Подключено</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--r-pill);background:var(--warning-bg);color:var(--warning);font-size:12px;font-weight:500;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>Ждёт документов</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--r-pill);background:var(--error-bg);color:var(--error);font-size:12px;font-weight:500;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>Отклонено</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--r-pill);background:var(--info-bg);color:var(--info);font-size:12px;font-weight:500;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>На проверке</span>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="padding:4px 10px;border-radius:var(--r-pill);border:1px solid var(--border-strong);font-size:12px;color:var(--ink-2);">Связь</span>
+            <span style="padding:4px 10px;border-radius:var(--r-pill);border:1px solid var(--border-strong);font-size:12px;color:var(--ink-2);">Бухгалтерия</span>
+            <span style="padding:4px 10px;border-radius:var(--r-pill);border:1px solid var(--ink);color:var(--ink);font-size:12px;font-weight:500;">Хит</span>
+            <span style="padding:4px 10px;border-radius:var(--r-pill);background:var(--brand);color:var(--brand-ink);font-size:12px;font-weight:600;">Beeline</span>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:var(--pad-card);display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:13px;font-weight:600;">Что входит</span>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-2);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" style="flex:0 0 17px;margin-top:2px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Безлимитные звонки внутри сети</div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-2);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" style="flex:0 0 17px;margin-top:2px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Онлайн-касса и фискальный чек</div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-2);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" style="flex:0 0 17px;margin-top:2px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Электронные счёт-фактуры</div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-3);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="flex:0 0 17px;margin-top:2px;"><path d="M6 12h12"></path></svg>Выделенный IP — за доплату</div>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:var(--pad-card);display:flex;flex-direction:column;gap:0;">
+          <span style="font-size:13px;font-weight:600;padding-bottom:12px;">Заявки</span>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--border);">
+            <div style="display:flex;flex-direction:column;min-width:0;"><span style="font-size:14px;font-weight:500;">Онлайн-касса</span><span style="font-size:12px;color:var(--ink-3);">№ 4821 · 12 сен</span></div>
+            <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--success);white-space:nowrap;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>Готово</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--border);">
+            <div style="display:flex;flex-direction:column;min-width:0;"><span style="font-size:14px;font-weight:500;">Тариф «Дело M»</span><span style="font-size:12px;color:var(--ink-3);">№ 4815 · 11 сен</span></div>
+            <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--warning);white-space:nowrap;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>Документы</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--border);">
+            <div style="display:flex;flex-direction:column;min-width:0;"><span style="font-size:14px;font-weight:500;">Эквайринг</span><span style="font-size:12px;color:var(--ink-3);">№ 4790 · 8 сен</span></div>
+            <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--error);white-space:nowrap;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>Отклонено</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cards" style="display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Карточка продукта</h2>
+        <p style="margin:0;font-size:14px;color:var(--ink-2);">Иконка, категория, название, короткое описание, цена в serif, действие. Hover поднимает тень.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:var(--pad-card);display:flex;flex-direction:column;gap:14px;transition:box-shadow .18s,transform .18s;" style-hover="border-color:var(--border-strong);box-shadow:var(--shadow-sm);">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:var(--r-md);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--ink);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 7h8M8 11h8M8 15h4"></path></svg></div>
+            <span style="padding:4px 10px;border-radius:var(--r-pill);background:var(--bg-sunken);font-size:12px;color:var(--ink-2);">Бухгалтерия</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <span style="font-size:18px;font-weight:600;letter-spacing:-0.01em;">Онлайн-бухгалтерия</span>
+            <span style="font-size:14px;line-height:1.5;color:var(--ink-2);">Расчёт налогов, отчётность и напоминания о сроках для ИП на упрощёнке.</span>
+          </div>
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:auto;padding-top:6px;">
+            <div style="display:flex;flex-direction:column;">
+              <span style="font-size:24px;font-weight:600;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;line-height:1.15;">4 900 ₸</span>
+              <span style="font-size:12px;color:var(--ink-3);">в месяц</span>
+            </div>
+            <button style="height:36px;padding:0 14px;border:none;border-radius:var(--r-sm);background:var(--accent);color:var(--accent-ink);font-family:var(--font-sans);font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--accent-hover);">Подключить</button>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:var(--pad-card);display:flex;flex-direction:column;gap:14px;transition:box-shadow .18s,transform .18s;" style-hover="border-color:var(--border-strong);box-shadow:var(--shadow-sm);">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:var(--r-md);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--ink);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 10h18M7 14h4"></path></svg></div>
+            <span style="padding:4px 10px;border-radius:var(--r-pill);border:1px solid var(--ink);color:var(--ink);font-size:12px;font-weight:500;">Хит</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <span style="font-size:18px;font-weight:600;letter-spacing:-0.01em;">Эквайринг</span>
+            <span style="font-size:14px;line-height:1.5;color:var(--ink-2);">Приём карт и QR. Зачисление на счёт на следующий рабочий день.</span>
+          </div>
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:auto;padding-top:6px;">
+            <div style="display:flex;flex-direction:column;">
+              <span style="font-size:24px;font-weight:600;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;line-height:1.15;">от 1,9%</span>
+              <span style="font-size:12px;color:var(--ink-3);">с транзакции</span>
+            </div>
+            <button style="height:36px;padding:0 14px;border:none;border-radius:var(--r-sm);background:var(--accent);color:var(--accent-ink);font-family:var(--font-sans);font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--accent-hover);">Подключить</button>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:var(--pad-card);display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:var(--r-md);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--ink-3);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg></div>
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--r-pill);background:var(--success-bg);color:var(--success);font-size:12px;font-weight:500;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>Подключено</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <span style="font-size:18px;font-weight:600;letter-spacing:-0.01em;">Виртуальная АТС</span>
+            <span style="font-size:14px;line-height:1.5;color:var(--ink-2);">Один номер на всех сотрудников, запись разговоров и статистика.</span>
+          </div>
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:auto;padding-top:6px;">
+            <div style="display:flex;flex-direction:column;">
+              <span style="font-size:24px;font-weight:600;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;line-height:1.15;">3 500 ₸</span>
+              <span style="font-size:12px;color:var(--ink-3);">следующее списание 1 окт</span>
+            </div>
+            <button style="height:36px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);color:var(--ink);font-family:var(--font-sans);font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--bg-sunken);">Управлять</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalog" style="display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Экран · Каталог</h2>
+        <p style="margin:0;font-size:14px;color:var(--ink-2);">Поиск, фильтры-чипы, плотная сетка. Заголовок serif, всё остальное — sans.</p>
+      </div>
+      <div style="background:var(--bg-sunken);border-radius:var(--r-lg);padding:28px;display:flex;flex-direction:column;gap:20px;">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <h3 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:32px;line-height:1.15;letter-spacing:-0.02em;">Сервисы для бизнеса</h3>
+            <span style="font-size:14px;color:var(--ink-2);">48 решений для ИП и самозанятых</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <div style="display:flex;align-items:center;gap:8px;height:var(--row-h);padding:0 12px;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--r-sm);min-width:220px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="1.5"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+              <input type="text" placeholder="Поиск по каталогу" style="flex:1;min-width:0;border:none;outline:none;background:transparent;font-family:var(--font-sans);font-size:14px;" />
+            </div>
+            <button style="height:var(--row-h);padding:0 14px;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);font-family:var(--font-sans);font-size:14px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--bg);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M7 12h10M10 17h4"></path></svg>Фильтры</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="padding:6px 12px;border-radius:var(--r-pill);background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;">Все</span>
+          <span style="padding:6px 12px;border-radius:var(--r-pill);background:var(--surface);border:1px solid var(--border-strong);font-size:13px;color:var(--ink-2);cursor:pointer;" style-hover="color:var(--ink);border-color:var(--ink-3);">Связь</span>
+          <span style="padding:6px 12px;border-radius:var(--r-pill);background:var(--surface);border:1px solid var(--border-strong);font-size:13px;color:var(--ink-2);cursor:pointer;" style-hover="color:var(--ink);border-color:var(--ink-3);">Бухгалтерия</span>
+          <span style="padding:6px 12px;border-radius:var(--r-pill);background:var(--surface);border:1px solid var(--border-strong);font-size:13px;color:var(--ink-2);cursor:pointer;" style-hover="color:var(--ink);border-color:var(--ink-3);">Платежи</span>
+          <span style="padding:6px 12px;border-radius:var(--r-pill);background:var(--surface);border:1px solid var(--border-strong);font-size:13px;color:var(--ink-2);cursor:pointer;" style-hover="color:var(--ink);border-color:var(--ink-3);">Реклама</span>
+          <span style="padding:6px 12px;border-radius:var(--r-pill);background:var(--surface);border:1px solid var(--border-strong);font-size:13px;color:var(--ink-2);cursor:pointer;" style-hover="color:var(--ink);border-color:var(--ink-3);">Документы</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;">
+          <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:18px;display:flex;flex-direction:column;gap:10px;" style-hover="border-color:var(--border-strong);box-shadow:var(--shadow-sm);">
+            <div style="width:34px;height:34px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M8 12h8M12 8v8"></path></svg></div>
+            <span style="font-size:15px;font-weight:600;">Онлайн-касса</span>
+            <span style="font-size:13px;color:var(--ink-2);">Фискализация чеков и отчёты в КГД</span>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-top:auto;padding-top:10px;border-top:1px solid var(--border);">
+              <span style="font-size:18px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.01em;">2 500 ₸</span><span style="font-size:12px;color:var(--ink-3);">/мес</span>
+            </div>
+          </div>
+          <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:18px;display:flex;flex-direction:column;gap:10px;" style-hover="border-color:var(--border-strong);box-shadow:var(--shadow-sm);">
+            <div style="width:34px;height:34px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M4 18V9M10 18V5M16 18v-6M4 20h16"></path></svg></div>
+            <span style="font-size:15px;font-weight:600;">Аналитика продаж</span>
+            <span style="font-size:13px;color:var(--ink-2);">Выручка, средний чек, топ-товары</span>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-top:auto;padding-top:10px;border-top:1px solid var(--border);">
+              <span style="font-size:18px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.01em;">Бесплатно</span><span style="font-size:12px;color:var(--ink-3);">в тарифе</span>
+            </div>
+          </div>
+          <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:18px;display:flex;flex-direction:column;gap:10px;" style-hover="border-color:var(--border-strong);box-shadow:var(--shadow-sm);">
+            <div style="width:34px;height:34px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M7 4h7l4 4v12H7z"></path><path d="M14 4v4h4M10 13h5"></path></svg></div>
+            <span style="font-size:15px;font-weight:600;">ЭДО и подпись</span>
+            <span style="font-size:13px;color:var(--ink-2);">Договоры и акты без бумаги</span>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-top:auto;padding-top:10px;border-top:1px solid var(--border);">
+              <span style="font-size:18px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.01em;">1 200 ₸</span><span style="font-size:12px;color:var(--ink-3);">/мес</span>
+            </div>
+          </div>
+          <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:18px;display:flex;flex-direction:column;gap:10px;" style-hover="border-color:var(--border-strong);box-shadow:var(--shadow-sm);">
+            <div style="width:34px;height:34px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M12 3 4 7v5c0 5 3.4 8 8 9 4.6-1 8-4 8-9V7z"></path></svg></div>
+            <span style="font-size:15px;font-weight:600;">Антифрод для сайта</span>
+            <span style="font-size:13px;color:var(--ink-2);">Защита платежей и форм</span>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-top:auto;padding-top:10px;border-top:1px solid var(--border);">
+              <span style="font-size:18px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.01em;">3 900 ₸</span><span style="font-size:12px;color:var(--ink-3);">/мес</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="form" style="display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Экран · Заявка на подключение</h2>
+        <p style="margin:0;font-size:14px;color:var(--ink-2);">Две колонки: форма и сводка с ценой. Основное действие — одно, внизу формы.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.95fr);gap:16px;align-items:start;">
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:28px;display:flex;flex-direction:column;gap:22px;">
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;gap:6px;align-items:center;font-size:12px;color:var(--ink-3);">
+              <span>Каталог</span><span>/</span><span>Эквайринг</span><span>/</span><span style="color:var(--ink);">Заявка</span>
+            </div>
+            <h3 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.02em;">Подключение эквайринга</h3>
+            <span style="font-size:14px;color:var(--ink-2);">Заполните данные — менеджер перезвонит в течение рабочего дня.</span>
+          </div>
+          <div style="display:flex;gap:0;align-items:center;">
+            <div style="display:flex;align-items:center;gap:8px;flex:1;"><span style="width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;">1</span><span style="font-size:13px;font-weight:500;">Реквизиты</span><div style="flex:1;height:1px;background:var(--border);"></div></div>
+            <div style="display:flex;align-items:center;gap:8px;flex:1;"><span style="width:22px;height:22px;border-radius:50%;border:1px solid var(--border-strong);color:var(--ink-3);display:flex;align-items:center;justify-content:center;font-size:12px;">2</span><span style="font-size:13px;color:var(--ink-3);">Документы</span><div style="flex:1;height:1px;background:var(--border);"></div></div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="width:22px;height:22px;border-radius:50%;border:1px solid var(--border-strong);color:var(--ink-3);display:flex;align-items:center;justify-content:center;font-size:12px;">3</span><span style="font-size:13px;color:var(--ink-3);">Подтверждение</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+            <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:13px;font-weight:500;">Название ИП</span>
+              <input type="text" value="ИП Ахметов А." style="height:var(--row-h);padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--r-sm);font-family:var(--font-sans);font-size:15px;outline:none;" style-focus="border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);" /></label>
+            <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:13px;font-weight:500;">БИН / ИИН</span>
+              <input type="text" value="920415300123" style="height:var(--row-h);padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--r-sm);font-family:var(--font-sans);font-size:15px;outline:none;font-variant-numeric:tabular-nums;" style-focus="border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);" /></label>
+            <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:13px;font-weight:500;">Город</span>
+              <select style="height:var(--row-h);padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--r-sm);font-family:var(--font-sans);font-size:15px;background:var(--surface);outline:none;appearance:none;"><option>Алматы</option><option>Астана</option></select></label>
+            <label style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:13px;font-weight:500;">Оборот в месяц</span>
+              <select style="height:var(--row-h);padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--r-sm);font-family:var(--font-sans);font-size:15px;background:var(--surface);outline:none;appearance:none;"><option>до 1 млн ₸</option><option>1–5 млн ₸</option></select></label>
+            <label style="display:flex;flex-direction:column;gap:6px;grid-column:1/-1;"><span style="font-size:13px;font-weight:500;">Адрес точки</span>
+              <input type="text" placeholder="ул. Абая 150, офис 4" style="height:var(--row-h);padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--r-sm);font-family:var(--font-sans);font-size:15px;outline:none;" style-focus="border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);" /></label>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--border);padding-top:18px;">
+            <span style="font-size:13px;font-weight:600;">Нужно оборудование</span>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <label style="flex:1 1 200px;display:flex;gap:10px;padding:14px;border:1px solid var(--accent);border-radius:var(--r-md);cursor:pointer;background:var(--surface-2);">
+                <span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1px solid var(--accent);display:inline-flex;align-items:center;justify-content:center;margin-top:1px;"><span style="width:9px;height:9px;border-radius:50%;background:var(--accent);"></span></span>
+                <span style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:14px;font-weight:500;">POS-терминал</span><span style="font-size:12px;color:var(--ink-3);">Аренда 2 900 ₸/мес</span></span></label>
+              <label style="flex:1 1 200px;display:flex;gap:10px;padding:14px;border:1px solid var(--border);border-radius:var(--r-md);cursor:pointer;">
+                <span style="width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1px solid var(--border-strong);margin-top:1px;"></span>
+                <span style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:14px;font-weight:500;">Только QR</span><span style="font-size:12px;color:var(--ink-3);">Без оборудования</span></span></label>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:18px;">
+            <button style="height:var(--row-h);padding:0 22px;border:none;border-radius:var(--r-sm);background:var(--accent);color:var(--accent-ink);font-family:var(--font-sans);font-size:15px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--accent-hover);">Отправить заявку</button>
+            <button style="height:var(--row-h);padding:0 14px;border:none;background:transparent;color:var(--ink-2);font-family:var(--font-sans);font-size:15px;font-weight:500;white-space:nowrap;cursor:pointer;border-radius:var(--r-sm);" style-hover="background:var(--bg-sunken);">Сохранить черновик</button>
+            <span style="font-size:12px;color:var(--ink-3);">Нажимая, вы соглашаетесь с <a href="#form">условиями</a></span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:22px;display:flex;flex-direction:column;gap:14px;">
+            <span style="font-size:13px;font-weight:600;">Сводка</span>
+            <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--ink-2);"><span>Эквайринг</span><span style="color:var(--ink);">1,9%</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--ink-2);"><span>POS-терминал</span><span style="color:var(--ink);">2 900 ₸</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--ink-2);"><span>Подключение</span><span style="color:var(--success);">0 ₸</span></div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid var(--border);padding-top:14px;">
+              <span style="font-size:13px;color:var(--ink-2);">Итого в месяц</span>
+              <span style="font-size:26px;font-weight:600;line-height:1.1;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;">2 900 ₸</span>
+            </div>
+          </div>
+          <div style="background:var(--info-bg);border-radius:var(--r-md);padding:16px;display:flex;gap:10px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="1.4" style="flex:0 0 18px;margin-top:1px;"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>
+            <span style="font-size:13px;color:var(--ink-2);">Для самозанятых достаточно ИИН — справка о доходах не нужна.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tariff" style="display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Экран · Страница тарифа</h2>
+        <p style="margin:0;font-size:14px;color:var(--ink-2);">Крупное число serif, состав тарифа чеклистом, сравнение вариантов рядом.</p>
+      </div>
+      <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:32px;display:flex;flex-direction:column;gap:28px;">
+        <div style="display:flex;gap:28px;justify-content:space-between;flex-wrap:wrap;align-items:flex-start;">
+          <div style="display:flex;flex-direction:column;gap:12px;max-width:520px;min-width:0;">
+            <div style="display:flex;gap:8px;align-items:center;">
+              <span style="padding:4px 10px;border-radius:var(--r-pill);background:var(--brand);color:var(--brand-ink);font-size:12px;font-weight:600;">Для ИП</span>
+              <span style="padding:4px 10px;border-radius:var(--r-pill);border:1px solid var(--border-strong);font-size:12px;color:var(--ink-2);">Связь + сервисы</span>
+            </div>
+            <h3 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-0.02em;">Тариф «Дело M»</h3>
+            <p style="margin:0;font-size:16px;color:var(--ink-2);">Связь на 3 сотрудников, онлайн-бухгалтерия и приём платежей в одном счёте. Без абонентской платы за сервисы первые два месяца.</p>
+          </div>
+          <div style="flex:0 0 260px;background:var(--bg-sunken);border-radius:var(--r-md);padding:22px;display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <span style="font-size:38px;font-weight:600;line-height:1.05;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;">7 900 ₸</span>
+              <span style="font-size:13px;color:var(--ink-3);">в месяц, НДС включён</span>
+            </div>
+            <button style="height:var(--row-h);border:none;border-radius:var(--r-sm);background:var(--accent);color:var(--accent-ink);font-family:var(--font-sans);font-size:15px;font-weight:500;white-space:nowrap;cursor:pointer;width:100%;" style-hover="background:var(--accent-hover);">Перейти на тариф</button>
+            <button style="height:var(--row-h);border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);font-family:var(--font-sans);font-size:15px;font-weight:500;white-space:nowrap;cursor:pointer;width:100%;" style-hover="background:var(--bg);">Сравнить тарифы</button>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:22px 0;">
+          <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-family:var(--font-serif);font-size:30px;line-height:1.1;">20 ГБ</span><span style="font-size:13px;color:var(--ink-3);">интернет на номер</span></div>
+          <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-family:var(--font-serif);font-size:30px;line-height:1.1;">1 500</span><span style="font-size:13px;color:var(--ink-3);">минут на все сети</span></div>
+          <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-family:var(--font-serif);font-size:30px;line-height:1.1;">3</span><span style="font-size:13px;color:var(--ink-3);">номера в группе</span></div>
+          <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-family:var(--font-serif);font-size:30px;line-height:1.1;">2 мес</span><span style="font-size:13px;color:var(--ink-3);">сервисы бесплатно</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <span style="font-size:13px;font-weight:600;">Входит в тариф</span>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;gap:10px;font-size:14px;color:var(--ink-2);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" style="flex:0 0 17px;margin-top:2px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Онлайн-бухгалтерия для упрощёнки</div>
+              <div style="display:flex;gap:10px;font-size:14px;color:var(--ink-2);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" style="flex:0 0 17px;margin-top:2px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Приём карт и QR без аренды терминала</div>
+              <div style="display:flex;gap:10px;font-size:14px;color:var(--ink-2);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" style="flex:0 0 17px;margin-top:2px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Виртуальная АТС на 3 линии</div>
+              <div style="display:flex;gap:10px;font-size:14px;color:var(--ink-2);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" style="flex:0 0 17px;margin-top:2px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Персональный менеджер в чате</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <span style="font-size:13px;font-weight:600;">Другие тарифы</span>
+            <div style="display:flex;flex-direction:column;gap:0;">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--border);">
+                <div style="display:flex;flex-direction:column;"><span style="font-size:14px;font-weight:500;">Дело S</span><span style="font-size:12px;color:var(--ink-3);">1 номер · 10 ГБ</span></div>
+                <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;">4 500 ₸</span>
+                  <button style="height:32px;padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);font-family:var(--font-sans);font-size:13px;white-space:nowrap;cursor:pointer;" style-hover="background:var(--bg-sunken);">Выбрать</button></div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--border);background:var(--surface-2);">
+                <div style="display:flex;flex-direction:column;"><span style="font-size:14px;font-weight:500;">Дело M · текущий выбор</span><span style="font-size:12px;color:var(--ink-3);">3 номера · 20 ГБ</span></div>
+                <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;">7 900 ₸</span>
+                  <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--success);"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>Выбран</span></div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+                <div style="display:flex;flex-direction:column;"><span style="font-size:14px;font-weight:500;">Дело L</span><span style="font-size:12px;color:var(--ink-3);">5 номеров · безлимит</span></div>
+                <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;">13 900 ₸</span>
+                  <button style="height:32px;padding:0 12px;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);font-family:var(--font-sans);font-size:13px;white-space:nowrap;cursor:pointer;" style-hover="background:var(--bg-sunken);">Выбрать</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="partners" style="display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Карточка партнёра</h2>
+        <p style="margin:0;font-size:14px;color:var(--ink-2);">Только лого, название и одно предложение о пользе. Цена и кнопка — на странице продукта, не в плитке: каталог остаётся спокойным. Категория — снизу, мелким шрифтом с линейной иконкой.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;">
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:26px;display:flex;flex-direction:column;gap:18px;min-height:250px;transition:box-shadow .18s;cursor:pointer;" style-hover="border-color:var(--border-strong);box-shadow:var(--shadow-sm);">
+          <div style="width:56px;height:56px;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.25"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 10h18M7 14h4"></path></svg></div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <span style="font-family:var(--font-serif);font-size:21px;line-height:1.25;letter-spacing:-0.01em;">Kaspi Pay</span>
+            <span style="font-size:15px;line-height:1.5;color:var(--ink-2);">Приём платежей по QR и картам с зачислением на следующий рабочий день.</span>
+          </div>
+          <div style="margin-top:auto;display:flex;align-items:center;gap:8px;color:var(--ink-3);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 10h18"></path></svg>
+            <span style="font-size:13px;color:var(--ink-2);">Платежи</span>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:26px;display:flex;flex-direction:column;gap:18px;min-height:250px;transition:box-shadow .18s;cursor:pointer;" style-hover="border-color:var(--border-strong);box-shadow:var(--shadow-sm);">
+          <div style="width:56px;height:56px;border-radius:12px;background:var(--bg-sunken);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--ink);">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h4"></path></svg></div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <span style="font-family:var(--font-serif);font-size:21px;line-height:1.25;letter-spacing:-0.01em;">Бухгалтерия 1С:Fresh</span>
+            <span style="font-size:15px;line-height:1.5;color:var(--ink-2);">Налоги, отчётность и напоминания о сроках для ИП на упрощённом режиме.</span>
+          </div>
+          <div style="margin-top:auto;display:flex;align-items:center;gap:8px;color:var(--ink-3);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 4h7l4 4v12H7z"></path><path d="M14 4v4h4"></path></svg>
+            <span style="font-size:13px;color:var(--ink-2);">Документы и учёт</span>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);padding:26px;display:flex;flex-direction:column;gap:18px;min-height:250px;transition:box-shadow .18s;cursor:pointer;" style-hover="border-color:var(--border-strong);box-shadow:var(--shadow-sm);">
+          <div style="width:56px;height:56px;border-radius:12px;background:var(--brand);display:flex;align-items:center;justify-content:center;color:var(--brand-ink);">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg></div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span style="font-family:var(--font-serif);font-size:21px;line-height:1.25;letter-spacing:-0.01em;">Виртуальная АТС</span>
+              <span style="padding:2px 8px;border-radius:var(--r-pill);background:var(--bg-sunken);font-size:11px;font-weight:500;color:var(--ink-2);">Beeline</span>
+            </div>
+            <span style="font-size:15px;line-height:1.5;color:var(--ink-2);">Один номер на всю команду, запись разговоров и статистика по звонкам.</span>
+          </div>
+          <div style="margin-top:auto;display:flex;align-items:center;gap:8px;color:var(--ink-3);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 4h4l2 5-2.5 1.5a10 10 0 0 0 5 5L15 13l5 2v4h-3A14 14 0 0 1 5 7z"></path></svg>
+            <span style="font-size:13px;color:var(--ink-2);">Связь</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plans" style="display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Тарифные планы</h2>
+        <p style="margin:0;font-size:14px;color:var(--ink-2);">Колонки разделены тонкой линией, а не рамками. Название serif, цена крупная, сноска мелкая, дальше чёрный CTA и чеклист по принципу «всё из предыдущего, плюс».</p>
+      </div>
+      <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-lg);display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));overflow:hidden;">
+        <div style="padding:32px 28px;display:flex;flex-direction:column;gap:20px;border-right:1px solid var(--border);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.2"><circle cx="12" cy="5" r="2.4"></circle><path d="M12 7.4V20M12 12l-4.5 3M12 12l4.5 3"></path></svg>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-family:var(--font-serif);font-size:34px;line-height:1.1;letter-spacing:-0.02em;">Дело S</span>
+            <span style="font-size:15px;color:var(--ink-2);">Для самозанятых</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <span style="font-size:26px;font-weight:600;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;">4 500 ₸</span>
+            <span style="font-size:13px;line-height:1.45;color:var(--ink-3);">В месяц при оплате за год. 5 200 ₸ при месячной оплате.</span>
+          </div>
+          <button style="height:var(--row-h);width:100%;border:none;border-radius:var(--r-sm);background:var(--accent);color:var(--accent-ink);font-family:var(--font-sans);font-size:15px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--accent-hover);">Подключить</button>
+          <div style="border-top:1px solid var(--border);padding-top:18px;display:flex;flex-direction:column;gap:11px;">
+            <div style="display:flex;gap:10px;font-size:14px;line-height:1.45;color:var(--ink-2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.4" style="flex:0 0 16px;margin-top:3px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>1 номер, 10 ГБ интернета</div>
+            <div style="display:flex;gap:10px;font-size:14px;line-height:1.45;color:var(--ink-2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.4" style="flex:0 0 16px;margin-top:3px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>500 минут на все сети</div>
+            <div style="display:flex;gap:10px;font-size:14px;line-height:1.45;color:var(--ink-2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.4" style="flex:0 0 16px;margin-top:3px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Приём платежей по QR</div>
+            <div style="display:flex;gap:10px;font-size:14px;line-height:1.45;color:var(--ink-2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.4" style="flex:0 0 16px;margin-top:3px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Поддержка в чате</div>
+          </div>
+        </div>
+        <div style="padding:32px 28px;display:flex;flex-direction:column;gap:20px;border-right:1px solid var(--border);background:var(--surface-2);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.2"><circle cx="12" cy="5" r="2.4"></circle><circle cx="6" cy="10.5" r="1.8"></circle><circle cx="18" cy="10.5" r="1.8"></circle><path d="M12 7.4V20M12 12l-4.6-1M12 12l4.6-1"></path></svg>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <span style="font-family:var(--font-serif);font-size:34px;line-height:1.1;letter-spacing:-0.02em;">Дело M</span>
+              <span style="padding:3px 9px;border-radius:var(--r-pill);background:var(--accent);color:var(--accent-ink);font-size:11px;font-weight:500;">Выбирают чаще</span>
+            </div>
+            <span style="font-size:15px;color:var(--ink-2);">Для ИП с сотрудниками</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <span style="font-size:26px;font-weight:600;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;">7 900 ₸</span>
+            <span style="font-size:13px;line-height:1.45;color:var(--ink-3);">В месяц при оплате за год. Сервисы бесплатно первые 2 месяца.</span>
+          </div>
+          <button style="height:var(--row-h);width:100%;border:none;border-radius:var(--r-sm);background:var(--accent);color:var(--accent-ink);font-family:var(--font-sans);font-size:15px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--accent-hover);">Подключить</button>
+          <div style="border-top:1px solid var(--border);padding-top:18px;display:flex;flex-direction:column;gap:11px;">
+            <span style="font-size:14px;font-weight:600;">Всё из «Дело S», плюс:</span>
+            <div style="display:flex;gap:10px;font-size:14px;line-height:1.45;color:var(--ink-2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.4" style="flex:0 0 16px;margin-top:3px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>3 номера в группе, 20 ГБ каждому</div>
+            <div style="display:flex;gap:10px;font-size:14px;line-height:1.45;color:var(--ink-2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.4" style="flex:0 0 16px;margin-top:3px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Онлайн-бухгалтерия</div>
+            <div style="display:flex;gap:10px;font-size:14px;line-height:1.45;color:var(--ink-2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.4" style="flex:0 0 16px;margin-top:3px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Виртуальная АТС на 3 линии</div>
+            <div style="display:flex;gap:10px;font-size:14px;line-height:1.45;color:var(--ink-2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.4" style="flex:0 0 16px;margin-top:3px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Эквайринг по ставке 1,9%</div>
+          </div>
+        </div>
+        <div style="padding:32px 28px;display:flex;flex-direction:column;gap:20px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.2"><circle cx="12" cy="4.5" r="2.2"></circle><circle cx="5" cy="9.5" r="1.7"></circle><circle cx="19" cy="9.5" r="1.7"></circle><circle cx="8" cy="14" r="1.7"></circle><circle cx="16" cy="14" r="1.7"></circle><path d="M12 6.7V20M12 11l-5.3-1M12 11l5.3-1M12 15l-2.6-.6M12 15l2.6-.6"></path></svg>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-family:var(--font-serif);font-size:34px;line-height:1.1;letter-spacing:-0.02em;">Дело L</span>
+            <span style="font-size:15px;color:var(--ink-2);">Для растущей команды</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <span style="font-size:26px;font-weight:600;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;">от 13 900 ₸</span>
+            <span style="font-size:13px;line-height:1.45;color:var(--ink-3);">В месяц. Цена зависит от числа номеров.</span>
+          </div>
+          <button style="height:var(--row-h);width:100%;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);color:var(--ink);font-family:var(--font-sans);font-size:15px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--bg-sunken);">Обсудить с менеджером</button>
+          <div style="border-top:1px solid var(--border);padding-top:18px;display:flex;flex-direction:column;gap:11px;">
+            <span style="font-size:14px;font-weight:600;">Всё из «Дело M», плюс:</span>
+            <div style="display:flex;gap:10px;font-size:14px;line-height:1.45;color:var(--ink-2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.4" style="flex:0 0 16px;margin-top:3px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>5 номеров и безлимитный интернет</div>
+            <div style="display:flex;gap:10px;font-size:14px;line-height:1.45;color:var(--ink-2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.4" style="flex:0 0 16px;margin-top:3px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Персональный менеджер</div>
+            <div style="display:flex;gap:10px;font-size:14px;line-height:1.45;color:var(--ink-2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.4" style="flex:0 0 16px;margin-top:3px;"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>Выделенный IP и статистика по API</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cabinet" style="display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--border);padding-bottom:14px;">
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-0.015em;">Экран · Личный кабинет</h2>
+        <p style="margin:0;font-size:14px;color:var(--ink-2);">Тот же стиль в рабочем режиме: плотные строки, serif только в заголовке и суммах, статусы точками. Действия — справа, одно основное.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:var(--r-lg);overflow-x:auto;overflow-y:hidden;background:var(--bg);"><div style="min-width:940px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px;background:var(--surface);border-bottom:1px solid var(--border);">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:20px;height:20px;border-radius:5px;background:var(--brand);"></div>
+            <span style="font-size:14px;font-weight:600;">Beeline Business</span>
+            <span style="width:1px;height:18px;background:var(--border);margin:0 4px;"></span>
+            <span style="font-size:14px;color:var(--ink-2);">ИП Ахметов А.</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="display:flex;align-items:center;gap:8px;height:34px;padding:0 10px;border:1px solid var(--border);border-radius:var(--r-sm);min-width:180px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="1.5"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+              <input type="text" placeholder="Поиск" style="flex:1;min-width:0;border:none;outline:none;background:transparent;font-family:var(--font-sans);font-size:13px;" />
+            </div>
+            <button style="width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--r-sm);background:var(--surface);color:var(--ink-2);cursor:pointer;" style-hover="background:var(--bg-sunken);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 10a6 6 0 1 1 12 0c0 4 1.5 5 1.5 5h-15S6 14 6 10z"></path><path d="M10.5 19a1.8 1.8 0 0 0 3 0"></path></svg></button>
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--bg-sunken);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--ink-2);">АА</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:stretch;gap:0;">
+          <div style="flex:0 0 190px;padding:18px 12px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;gap:2px;">
+            <span style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);background:var(--bg-sunken);font-size:13px;font-weight:500;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 20v-9l7-5 7 5v9z"></path></svg>Обзор</span>
+            <span style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:13px;color:var(--ink-2);cursor:pointer;" style-hover="background:var(--bg-sunken);color:var(--ink);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M8 12h8"></path></svg>Мои сервисы</span>
+            <span style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:13px;color:var(--ink-2);cursor:pointer;" style-hover="background:var(--bg-sunken);color:var(--ink);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 10h18"></path></svg>Платежи</span>
+            <span style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:13px;color:var(--ink-2);cursor:pointer;" style-hover="background:var(--bg-sunken);color:var(--ink);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 4h7l4 4v12H7z"></path><path d="M14 4v4h4"></path></svg>Документы</span>
+            <span style="display:flex;align-items:center;justify-content:space-between;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:13px;color:var(--ink-2);cursor:pointer;" style-hover="background:var(--bg-sunken);color:var(--ink);">
+              <span style="display:flex;align-items:center;gap:9px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h5"></path></svg>Заявки</span>
+              <span style="font-size:11px;font-weight:600;color:var(--ink);background:var(--bg-sunken);border-radius:var(--r-pill);padding:1px 7px;">3</span></span>
+            <span style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r-sm);font-size:13px;color:var(--ink-2);cursor:pointer;" style-hover="background:var(--bg-sunken);color:var(--ink);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8.5" r="3.5"></circle><path d="M5 20c0-3.5 3.2-5.5 7-5.5s7 2 7 5.5"></path></svg>Реквизиты</span>
+            <div style="margin-top:18px;padding:12px;background:var(--bg-sunken);border-radius:var(--r-md);display:flex;flex-direction:column;gap:8px;">
+              <span style="font-size:12px;line-height:1.4;color:var(--ink-2);">Менеджер Динара на связи до 19:00</span>
+              <button style="height:30px;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);font-family:var(--font-sans);font-size:12px;font-weight:500;white-space:nowrap;cursor:pointer;">Написать</button>
+            </div>
+          </div>
+
+          <div style="flex:1 1 0;min-width:0;padding:26px;display:flex;flex-direction:column;gap:20px;">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+              <div style="display:flex;flex-direction:column;gap:3px;">
+                <h3 style="margin:0;font-family:var(--font-serif);font-weight:400;font-size:30px;line-height:1.15;letter-spacing:-0.02em;">Обзор</h3>
+                <span style="font-size:13px;color:var(--ink-3);">Данные на 14 сентября, 10:24</span>
+              </div>
+              <div style="display:flex;gap:10px;">
+                <button style="height:38px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);font-family:var(--font-sans);font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--bg-sunken);">Выставить счёт</button>
+                <button style="height:38px;padding:0 16px;border:none;border-radius:var(--r-sm);background:var(--accent);color:var(--accent-ink);font-family:var(--font-sans);font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--accent-hover);">Пополнить баланс</button>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--warning-bg);border-radius:var(--r-md);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="1.4" style="flex:0 0 18px;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5M12 16h.01"></path></svg>
+              <span style="flex:1;min-width:0;font-size:13px;color:var(--ink-2);">По заявке на эквайринг не хватает справки о регистрации ИП.</span>
+              <a href="#cabinet" style="font-size:13px;font-weight:500;text-decoration:none;border-bottom:1px solid var(--border-strong);">Загрузить</a>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
+              <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:18px;display:flex;flex-direction:column;gap:4px;">
+                <span style="font-size:12px;color:var(--ink-3);">Баланс</span>
+                <span style="font-family:var(--font-serif);font-size:28px;line-height:1.1;">18 400 ₸</span>
+                <span style="font-size:12px;color:var(--success);">Хватит на 2 месяца</span>
+              </div>
+              <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:18px;display:flex;flex-direction:column;gap:4px;">
+                <span style="font-size:12px;color:var(--ink-3);">Списание 1 октября</span>
+                <span style="font-family:var(--font-serif);font-size:28px;line-height:1.1;">9 300 ₸</span>
+                <span style="font-size:12px;color:var(--ink-3);">Тариф и 3 сервиса</span>
+              </div>
+              <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:18px;display:flex;flex-direction:column;gap:4px;">
+                <span style="font-size:12px;color:var(--ink-3);">Интернет на группу</span>
+                <span style="font-family:var(--font-serif);font-size:28px;line-height:1.1;">41 / 60 ГБ</span>
+                <div style="height:4px;border-radius:2px;background:var(--bg-sunken);margin-top:6px;"><div style="width:68%;height:100%;border-radius:2px;background:var(--accent);"></div></div>
+              </div>
+              <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:18px;display:flex;flex-direction:column;gap:4px;">
+                <span style="font-size:12px;color:var(--ink-3);">Принято платежей</span>
+                <span style="font-family:var(--font-serif);font-size:28px;line-height:1.1;">312 тыс ₸</span>
+                <span style="font-size:12px;color:var(--ink-3);">За сентябрь</span>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;align-items:start;">
+              <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:20px;display:flex;flex-direction:column;">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:14px;">
+                  <span style="font-size:14px;font-weight:600;">Мои сервисы</span>
+                  <a href="#cabinet" style="font-size:13px;color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--border-strong);">Все 7</a>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border);">
+                  <div style="width:32px;height:32px;flex:0 0 32px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--ink);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 4h4l2 5-2.5 1.5a10 10 0 0 0 5 5L15 13l5 2v4h-3A14 14 0 0 1 5 7z"></path></svg></div>
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column;"><span style="font-size:14px;font-weight:500;">Тариф «Дело M»</span><span style="font-size:12px;color:var(--ink-3);">3 номера · до 1 окт</span></div>
+                  <span style="font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink-2);">7 900 ₸</span>
+                  <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--success);white-space:nowrap;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>Активен</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border);">
+                  <div style="width:32px;height:32px;flex:0 0 32px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--ink);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 8h8M8 12h8"></path></svg></div>
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column;"><span style="font-size:14px;font-weight:500;">Онлайн-бухгалтерия</span><span style="font-size:12px;color:var(--ink-3);">Отчёт за квартал до 15 окт</span></div>
+                  <span style="font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink-2);">0 ₸</span>
+                  <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--success);white-space:nowrap;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>В тарифе</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border);">
+                  <div style="width:32px;height:32px;flex:0 0 32px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--ink);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 10h18"></path></svg></div>
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column;"><span style="font-size:14px;font-weight:500;">Эквайринг</span><span style="font-size:12px;color:var(--ink-3);">Заявка № 4790</span></div>
+                  <span style="font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink-2);">1,9%</span>
+                  <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--warning);white-space:nowrap;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>Документы</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border);">
+                  <div style="width:32px;height:32px;flex:0 0 32px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--ink);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 18V9M10 18V5M16 18v-6M4 20h16"></path></svg></div>
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column;"><span style="font-size:14px;font-weight:500;">Аналитика продаж</span><span style="font-size:12px;color:var(--ink-3);">Отчёт обновлён утром</span></div>
+                  <span style="font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink-2);">0 ₸</span>
+                  <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--success);white-space:nowrap;"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>Активен</span>
+                </div>
+              </div>
+
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:20px;display:flex;flex-direction:column;gap:12px;">
+                  <span style="font-size:14px;font-weight:600;">Документы</span>
+                  <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="1.4" style="flex:0 0 15px;"><path d="M7 4h7l4 4v12H7z"></path><path d="M14 4v4h4"></path></svg><span style="flex:1;min-width:0;">Счёт за сентябрь</span><a href="#cabinet" style="font-size:12px;text-decoration:none;border-bottom:1px solid var(--border-strong);">PDF</a></div>
+                  <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="1.4" style="flex:0 0 15px;"><path d="M7 4h7l4 4v12H7z"></path><path d="M14 4v4h4"></path></svg><span style="flex:1;min-width:0;">Акт сверки</span><a href="#cabinet" style="font-size:12px;text-decoration:none;border-bottom:1px solid var(--border-strong);">PDF</a></div>
+                  <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="1.4" style="flex:0 0 15px;"><path d="M7 4h7l4 4v12H7z"></path><path d="M14 4v4h4"></path></svg><span style="flex:1;min-width:0;">Договор № 4821</span><a href="#cabinet" style="font-size:12px;text-decoration:none;border-bottom:1px solid var(--border-strong);">PDF</a></div>
+                </div>
+                <div style="background:var(--surface);border:var(--card-border);box-shadow:var(--card-shadow);border-radius:var(--r-md);padding:20px;display:flex;flex-direction:column;gap:10px;">
+                  <span style="font-size:14px;font-weight:600;">Рекомендуем</span>
+                  <span style="font-family:var(--font-serif);font-size:19px;line-height:1.25;">ЭДО и подпись</span>
+                  <span style="font-size:13px;line-height:1.45;color:var(--ink-2);">Подписывайте договоры без бумаги — по данным вашего вида деятельности.</span>
+                  <button style="height:34px;margin-top:4px;border:1px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface);font-family:var(--font-sans);font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;" style-hover="background:var(--bg-sunken);">Посмотреть</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="border-top:1px solid var(--border);padding-top:22px;display:flex;flex-direction:column;gap:6px;">
+      <span style="font-size:13px;color:var(--ink-2);">Тестовая версия системы. Дальше: тёмные состояния, таблицы, пустые состояния, мобильная адаптация, токены в коде.</span>
+      <span style="font-size:12px;color:var(--ink-3);">Beeline Business · ИП и самозанятые · v0.1</span>
+    </footer>
+
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;density&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;regular&quot;,&quot;compact&quot;],&quot;default&quot;:&quot;regular&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Токены&quot;},&quot;surfaceStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;border&quot;,&quot;soft&quot;,&quot;shadow&quot;],&quot;default&quot;:&quot;border&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Токены&quot;},&quot;radiusStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;soft&quot;,&quot;sharp&quot;,&quot;round&quot;],&quot;default&quot;:&quot;soft&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Токены&quot;},&quot;brandColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;options&quot;:[&quot;#FFCC00&quot;,&quot;#141413&quot;,&quot;#2C6A4C&quot;],&quot;default&quot;:&quot;#FFCC00&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Токены&quot;}}">
+class Component extends DCLogic {
+  applyTokens() {
+    const p = this.props || {};
+    const r = document.documentElement;
+    const density = p.density || 'regular';
+    const surface = p.surfaceStyle || 'border';
+    const radius = p.radiusStyle || 'soft';
+    const brand = p.brandColor || '#FFCC00';
+
+    r.style.setProperty('--pad-card', density === 'compact' ? '16px' : '24px');
+    r.style.setProperty('--row-h', density === 'compact' ? '38px' : '44px');
+
+    if (surface === 'shadow') {
+      r.style.setProperty('--card-border', '1px solid transparent');
+      r.style.setProperty('--card-shadow', '0 1px 2px rgba(26,26,24,.06),0 8px 24px -14px rgba(26,26,24,.18)');
+    } else if (surface === 'soft') {
+      r.style.setProperty('--card-border', '1px solid var(--border)');
+      r.style.setProperty('--card-shadow', '0 1px 2px rgba(26,26,24,.05)');
+    } else {
+      r.style.setProperty('--card-border', '1px solid var(--border)');
+      r.style.setProperty('--card-shadow', 'none');
+    }
+
+    const rs = radius === 'sharp' ? ['4px', '6px', '8px'] : radius === 'round' ? ['12px', '18px', '24px'] : ['8px', '12px', '16px'];
+    r.style.setProperty('--r-sm', rs[0]);
+    r.style.setProperty('--r-md', rs[1]);
+    r.style.setProperty('--r-lg', rs[2]);
+    r.style.setProperty('--brand', brand);
+  }
+  componentDidMount() { this.applyTokens(); }
+  componentDidUpdate() { this.applyTokens(); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

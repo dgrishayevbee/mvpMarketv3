@@ -1,0 +1,70 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.tag--neutral {
+  border: 1px solid var(--border-strong);
+  color: var(--ink-2);
+}
+
+.tag--sunken {
+  background: var(--bg-sunken);
+  color: var(--ink-2);
+}
+
+.tag--accent {
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.tag--solid {
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 9px;
+}
+
+.tag--brand {
+  background: var(--brand);
+  color: var(--brand-ink);
+  font-weight: 500;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.status__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status--success {
+  color: var(--success);
+}
+.status--warning {
+  color: var(--warning);
+}
+.status--error {
+  color: var(--error);
+}
+.status--info {
+  color: var(--info);
+}
+.status--muted {
+  color: var(--ink-3);
+}

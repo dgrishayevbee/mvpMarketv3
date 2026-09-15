@@ -1,0 +1,41 @@
+.admin-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+}
+
+.admin-row:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.admin-row .field {
+  flex: 1;
+}
+
+.admin-row__id {
+  font-size: 12px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+
+
+.admin-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.admin-card__head {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.admin-card__head .field {
+  flex: 1;
+}

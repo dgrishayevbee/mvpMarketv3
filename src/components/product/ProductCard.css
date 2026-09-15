@@ -1,0 +1,45 @@
+.product-card {
+  gap: 16px;
+  padding: 22px;
+}
+
+.product-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.product-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-card__title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.product-card__subtitle {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+/*
+  320px вместо 280: карточка стала короче, и на трёх колонках вместо четырёх
+  шесть решений ложатся ровно в два ряда, без рваного хвоста.
+*/
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.product-grid > .card {
+  height: 100%;
+}

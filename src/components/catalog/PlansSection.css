@@ -1,0 +1,98 @@
+/*
+  Родительская сетка задаёт семь строк — по одной на каждую часть пакета.
+  row-gap здесь работает как внутренний отступ колонки: других элементов в
+  этих строках нет. column-gap — это зазор между самими пакетами.
+*/
+.plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  column-gap: 12px;
+  row-gap: 18px;
+  align-items: start;
+}
+
+.plan {
+  display: grid;
+  grid-row: span 7;
+  grid-template-rows: subgrid;
+  background: var(--surface);
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--r-lg);
+  padding: 32px 28px;
+}
+
+.plan--featured {
+  background: var(--surface-2);
+}
+
+.plan > svg {
+  color: var(--ink);
+}
+
+.plan__name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-content: start;
+}
+
+.plan__name {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.plan__audience {
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.plan .price__value {
+  font-size: 26px;
+}
+
+.plan__note {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+
+.plan__features {
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+
+/*
+  Без subgrid (старый браузер) колонка остаётся обычным flex-столбцом:
+  выравнивание по строкам теряется, но пакет читается целиком.
+*/
+@supports not (grid-template-rows: subgrid) {
+  .plan {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+
+/*
+  Точка перехода посчитана, а не взята на глаз: три колонки по 240px с
+  зазорами занимают 744px, плюс сайдбар 206 и поля 64 — это 1014px окна.
+  Ниже пакеты идут друг под другом, и общие строки не нужны. Если между
+  этими режимами оставить auto-fit, на промежуточной ширине третий пакет
+  срывается в отдельный ряд и повисает один.
+*/
+@media (max-width: 1014px) {
+  .plans {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 12px;
+  }
+
+  .plan {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+}

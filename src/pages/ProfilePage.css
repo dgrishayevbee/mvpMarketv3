@@ -1,0 +1,46 @@
+.cabinet {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.cabinet__side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+
+.cabinet__card-link {
+  font-size: 13px;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+
+.cabinet__doc {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.cabinet__doc > svg {
+  flex: 0 0 15px;
+  color: var(--ink-3);
+}
+
+.cabinet__doc-label {
+  flex: 1;
+  min-width: 0;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.cabinet__doc-link {
+  font-size: 12px;
+}

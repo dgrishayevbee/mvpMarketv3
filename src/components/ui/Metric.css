@@ -1,0 +1,54 @@
+.metric {
+  background: var(--surface);
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--r-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric__label {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.metric__value {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.metric__note {
+  font-size: 12px;
+}
+
+.metric__note--muted {
+  color: var(--ink-3);
+}
+.metric__note--success {
+  color: var(--success);
+}
+.metric__note--warning {
+  color: var(--warning);
+}
+
+.metric__track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--bg-sunken);
+  margin-top: 6px;
+}
+
+.metric__fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}

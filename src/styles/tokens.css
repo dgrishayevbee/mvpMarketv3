@@ -1,0 +1,60 @@
+/*
+  Токены дизайн-системы Beeline Business.
+
+  Источник — helmet-блок из DS-BASE.md (экспорт Claude Design). Имена и
+  значения перенесены один в один: это единственный источник истины по
+  цвету, шрифту, радиусу и тени. Компоненты читают переменные и никогда
+  не хардкодят значения — когда придёт следующая версия ДС, меняется
+  только этот файл.
+*/
+
+:root {
+  --bg: #f7f5f1;
+  --bg-sunken: #efebe3;
+  --surface: #ffffff;
+  --surface-2: #fbfaf7;
+
+  --border: #e7e1d7;
+  --border-strong: #cfc8ba;
+
+  --ink: #1a1a18;
+  --ink-2: #57534c;
+  --ink-3: #8b8579;
+
+  --accent: #141413;
+  --accent-hover: #333230;
+  --accent-ink: #ffffff;
+
+  --brand: #ffcc00;
+  --brand-ink: #1a1a18;
+
+  --success: #2c6a4c;
+  --success-bg: #e7f0ea;
+  --warning: #8a5710;
+  --warning-bg: #faefd9;
+  --error: #9a2a25;
+  --error-bg: #f8e8e5;
+  --info: #2d4f7a;
+  --info-bg: #e8eef6;
+
+  --font-serif: "Literata", Georgia, serif;
+  --font-sans: "Golos Text", "Helvetica Neue", sans-serif;
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(26, 26, 24, 0.04);
+  --shadow-md: 0 2px 6px rgba(26, 26, 24, 0.05), 0 14px 30px -14px rgba(26, 26, 24, 0.12);
+
+  --card-border: 1px solid var(--border);
+  --card-shadow: none;
+
+  --pad-card: 28px;
+  --row-h: 44px;
+
+  /* Ширины каркаса приложения — не из ДС, взяты из Screen Template. */
+  --sidebar-w: 206px;
+  --content-max: 1180px;
+}

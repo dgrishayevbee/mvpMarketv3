@@ -1,0 +1,39 @@
+.card {
+  background: var(--surface);
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.18s, border-color 0.18s;
+}
+
+.card--r-lg {
+  border-radius: var(--r-lg);
+}
+.card--r-md {
+  border-radius: var(--r-md);
+}
+
+.card--pad-lg {
+  padding: var(--pad-card);
+  gap: 14px;
+}
+.card--pad-md {
+  padding: 20px;
+  gap: 12px;
+}
+.card--pad-sm {
+  padding: 18px;
+  gap: 10px;
+}
+
+.card--interactive:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+a.card,
+a.card:hover {
+  text-decoration: none;
+  color: inherit;
+}
