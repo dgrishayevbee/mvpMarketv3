@@ -13,15 +13,11 @@
   margin-bottom: 20px;
 }
 
+/* Плитка внутри картинки — своей рамки и фона быть не должно. */
 .faq__mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border: 1px solid var(--border-strong);
-  border-radius: 50%;
-  color: var(--ink);
+  display: block;
+  width: 64px;
+  height: 64px;
 }
 
 .faq__title {

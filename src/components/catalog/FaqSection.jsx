@@ -1,10 +1,13 @@
-import { IconHelp } from "../ui/icons.jsx";
 import "./FaqSection.css";
 
 /*
   Частые вопросы. Собран на <details>/<summary>, а не на состоянии React:
   так раскрытие работает с клавиатуры и со скринридером без единой строки
   обработчиков, а плюс переворачивается в крестик обычным details[open].
+
+  Иконка шапки — из того же набора, что и услуги: графит, одна жёлтая
+  деталь, плитка нарисована внутри SVG. Поэтому своей рамки и фона у
+  .faq__mark нет.
 
   Секция уже ширины рабочей области и центрирована явной шириной
   (width: min(100%, N)), а не max-width с margin: auto — .content это
@@ -17,9 +20,7 @@ export function FaqSection({ faq }) {
   return (
     <section className="section faq" id="faq">
       <div className="faq__head">
-        <span className="faq__mark">
-          <IconHelp size={26} />
-        </span>
+        <img className="faq__mark" src="/images/ui/faq.svg" alt="" width={64} height={64} />
         <h2 className="faq__title serif">{faq.title}</h2>
         {faq.subtitle && <span className="faq__subtitle">{faq.subtitle}</span>}
       </div>
