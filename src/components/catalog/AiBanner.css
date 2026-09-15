@@ -41,8 +41,23 @@
   color: var(--ink-2);
 }
 
+/*
+  Кнопка намеренно не как остальные: жёлтых primary на странице уже
+  четыре (поиск в герое и три в тарифах), и пятая такая же не читалась
+  как отдельное предложение. Здесь белая подложка с лёгким жёлтым
+  переливом — тот же приём, что у панели, только плотнее.
+*/
 .ai-banner__cta.btn {
   margin-top: 6px;
+  border: 1px solid var(--accent-soft-border);
+  background: linear-gradient(135deg, var(--accent-soft) 0%, var(--surface) 62%);
+  color: var(--ink);
+}
+
+.ai-banner__cta.btn:hover {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, var(--accent-soft) 0%, var(--accent-soft) 100%);
+  color: var(--ink);
 }
 
 .ai-banner__suggestions {

@@ -13,11 +13,24 @@
   margin-bottom: 20px;
 }
 
-/* Плитка внутри картинки — своей рамки и фона быть не должно. */
+/*
+  Круг тонкий, знак — Literata, как заголовок. line-height: 1 и сдвиг на
+  пиксель вниз: у «?» в этой гарнитуре высокая точка, и по геометрии
+  круга он садится выше оптического центра.
+*/
 .faq__mark {
-  display: block;
-  width: 64px;
-  height: 64px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  font-family: var(--font-serif);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--ink);
+  padding-top: 2px;
 }
 
 .faq__title {
