@@ -243,6 +243,14 @@ export const IconCalculator = (p) => (
   </Svg>
 );
 
+export const IconHelp = (p) => (
+  <Svg {...p}>
+    <circle cx="12" cy="12" r="9.2" />
+    <path d="M9.5 9.4a2.6 2.6 0 1 1 3.4 2.5c-.6.2-.9.7-.9 1.3v.6" strokeLinecap="round" />
+    <circle cx="12" cy="16.8" r="0.9" />
+  </Svg>
+);
+
 /* Каталог обращается к иконке по строковому ключу из контента. */
 const BY_NAME = {
   book: IconBook,
@@ -266,6 +274,7 @@ const BY_NAME = {
   headset: IconHeadset,
   megaphone: IconMegaphone,
   calculator: IconCalculator,
+  help: IconHelp,
 };
 
 export function Icon({ name, ...rest }) {

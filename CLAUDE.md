@@ -49,7 +49,8 @@ src/
                     Steps (шаги мастера), icons
     layout/        Layout (топбар + сайдбар каталога), PageHead/SectionHead
     product/       ProductCard
-    catalog/       PlansSection — колонки тарифов, HeroSearch
+    catalog/       PlansSection — колонки тарифов, HeroSearch,
+                    FaqSection — аккордеон частых вопросов
   context/         Auth, Content, Products, Cart, Favorites, Orders, UI
   hooks/           useLocalStorage
   data/            siteContent.js — единственный источник контента главной

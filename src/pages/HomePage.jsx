@@ -6,6 +6,7 @@ import { useCart } from "../context/CartContext.jsx";
 import { SectionHead } from "../components/layout/PageHead.jsx";
 import { ProductCard } from "../components/product/ProductCard.jsx";
 import { PlansSection } from "../components/catalog/PlansSection.jsx";
+import { FaqSection } from "../components/catalog/FaqSection.jsx";
 import { HeroSearch } from "../components/catalog/HeroSearch.jsx";
 import { SearchField } from "../components/ui/Field.jsx";
 import { Button } from "../components/ui/Button.jsx";
@@ -173,6 +174,8 @@ export function HomePage() {
       </section>
 
       <PlansSection plans={content.plans} onChoose={choosePlan} sectionRef={plansRef} />
+
+      <FaqSection faq={content.faq} />
     </>
   );
 }
