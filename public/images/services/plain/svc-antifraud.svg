@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none"><defs>
+  <linearGradient id="svc_antifraud_plain_body" x1="0.2" y1="0" x2="0.6" y2="1">
+    <stop offset="0" stop-color="#3A3F47"/><stop offset="1" stop-color="#191C21"/>
+  </linearGradient>
+  <linearGradient id="svc_antifraud_plain_acc" x1="0" y1="0" x2="0.6" y2="1">
+    <stop offset="0" stop-color="#FFDD55"/><stop offset="1" stop-color="#F3A008"/>
+  </linearGradient>
+  <filter id="svc_antifraud_plain_sh" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="3" stdDeviation="3.2" flood-color="#080A0C" flood-opacity="0.2"/>
+  </filter>
+</defs>
+<g filter="url(#svc_antifraud_plain_sh)">
+  <path d="M40 9 L66 18.5 v21 c0 15.5 -10.5 26.5 -26 32 C24.5 66 14 55 14 39.5 v-21 Z" fill="url(#svc_antifraud_plain_body)"/>
+</g>
+<path d="M40 9 L66 18.5 v21 c0 15.5 -10.5 26.5 -26 32 z" fill="#9BA3AE" opacity="0.22"/>
+<path d="M29 39 L37 47 L52 30.5" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="61" cy="59" r="9.5" fill="url(#svc_antifraud_plain_acc)"/>
+<path d="M57 59 l3 3 5.5 -6" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>

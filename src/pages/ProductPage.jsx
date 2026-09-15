@@ -8,9 +8,9 @@ import { Card } from "../components/ui/Card.jsx";
 import { Button } from "../components/ui/Button.jsx";
 import { Price } from "../components/ui/Price.jsx";
 import { Tag } from "../components/ui/Tag.jsx";
-import { IconTile } from "../components/ui/IconTile.jsx";
+import { ServiceIcon } from "../components/ui/ServiceIcon.jsx";
+import { IconStar } from "../components/ui/icons.jsx";
 import { Checklist } from "../components/ui/Checklist.jsx";
-import { Icon, IconStar } from "../components/ui/icons.jsx";
 import "./ProductPage.css";
 
 export function ProductPage() {
@@ -57,9 +57,7 @@ export function ProductPage() {
       <div className="product-page">
         <Card className="product-page__main">
           <div className="product-page__head">
-            <IconTile size={40}>
-              <Icon name={product.icon} size={20} />
-            </IconTile>
+            <ServiceIcon src={product.image} name={product.icon} size={48} />
             <div className="product-page__tags">
               {product.badge && <Tag tone="accent">{product.badge}</Tag>}
               {category && <Tag tone="sunken">{category.label}</Tag>}

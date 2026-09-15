@@ -1,18 +1,17 @@
 import { Link } from "react-router-dom";
 import { Card } from "../ui/Card.jsx";
-import { IconTile } from "../ui/IconTile.jsx";
+import { ServiceIcon } from "../ui/ServiceIcon.jsx";
 import { Tag, Status } from "../ui/Tag.jsx";
 import { Icon } from "../ui/icons.jsx";
 import "./ProductCard.css";
 
 /*
-  Плитка каталога. Строение: крупная плитка-иконка сверху, название, одно
-  предложение о пользе и категория внизу — мелкой строкой с иконкой, а не
-  пилюлей. Категория прижата к низу карточки, поэтому в ряду все подписи
-  стоят на одной линии независимо от длины описания.
+  Плитка каталога. Строение: иконка услуги сверху, название, одно
+  предложение о пользе и категория внизу — мелкой строкой, а не пилюлей.
+  Категория прижата к низу карточки, поэтому в ряду все подписи стоят на
+  одной линии независимо от длины описания.
 
-  Цены и кнопки тут по-прежнему нет: они на странице решения, куда ведёт
-  вся карточка целиком.
+  Цены и кнопки тут нет: они на странице решения, куда ведёт вся карточка.
 */
 export function ProductCard({ product, category, inCart }) {
   return (
@@ -24,9 +23,7 @@ export function ProductCard({ product, category, inCart }) {
       className="product-card"
     >
       <div className="product-card__top">
-        <IconTile size={48} tone="solid">
-          <Icon name={product.icon} size={24} />
-        </IconTile>
+        <ServiceIcon src={product.image} name={product.icon} size={56} />
         {product.badge ? (
           <Tag tone="accent">{product.badge}</Tag>
         ) : inCart ? (
@@ -41,7 +38,11 @@ export function ProductCard({ product, category, inCart }) {
 
       {category && (
         <span className="product-card__category">
-          <Icon name={category.icon} size={15} />
+          {category.image ? (
+            <img src={category.image} alt="" width={18} height={18} />
+          ) : (
+            <Icon name={category.icon} size={15} />
+          )}
           {category.label}
         </span>
       )}

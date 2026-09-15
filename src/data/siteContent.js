@@ -6,7 +6,7 @@
 // Beeline Business: каталог сервисов для ИП и самозанятых, тарифные пакеты,
 // личный кабинет. Деньги в тенге, разряд — обычный пробел.
 
-export const CONTENT_VERSION = "v3-sidebar-1";
+export const CONTENT_VERSION = "v3-service-icons-1";
 
 export const defaultContent = {
   brand: {
@@ -48,12 +48,12 @@ export const defaultContent = {
   },
 
   categories: [
-    { id: "connect", label: "Связь", icon: "phone" },
-    { id: "accounting", label: "Бухгалтерия", icon: "calculator" },
-    { id: "payments", label: "Платежи", icon: "card" },
-    { id: "ads", label: "Реклама", icon: "megaphone" },
-    { id: "docs", label: "Документы", icon: "doc" },
-    { id: "security", label: "Безопасность", icon: "shield" },
+    { id: "connect", label: "Связь", icon: "phone", image: "/images/services/plain/svc-pbx.svg" },
+    { id: "accounting", label: "Бухгалтерия", icon: "calculator", image: "/images/services/plain/svc-accounting.svg" },
+    { id: "payments", label: "Платежи", icon: "card", image: "/images/services/plain/svc-acquiring.svg" },
+    { id: "ads", label: "Реклама", icon: "megaphone", image: "/images/services/plain/svc-ads.svg" },
+    { id: "docs", label: "Документы", icon: "doc", image: "/images/services/plain/svc-edo.svg" },
+    { id: "security", label: "Безопасность", icon: "shield", image: "/images/services/plain/svc-antifraud.svg" },
   ],
 
   // Вторая и третья группы сайдбара. supportLinks нарисованы неактивными:
@@ -76,6 +76,7 @@ export const defaultContent = {
   solutions: [
     {
       id: "acquiring",
+      image: "/images/services/light/svc-acquiring.svg",
       title: "Эквайринг",
       subtitle: "Приём карт и QR. Зачисление на счёт на следующий рабочий день",
       category: "payments",
@@ -94,6 +95,7 @@ export const defaultContent = {
     },
     {
       id: "accounting-online",
+      image: "/images/services/light/svc-accounting.svg",
       title: "Онлайн-бухгалтерия",
       subtitle: "Расчёт налогов, отчётность и напоминания о сроках для ИП на упрощёнке",
       category: "accounting",
@@ -110,6 +112,7 @@ export const defaultContent = {
     },
     {
       id: "pbx",
+      image: "/images/services/light/svc-pbx.svg",
       title: "Виртуальная АТС",
       subtitle: "Один номер на всех сотрудников, запись разговоров и статистика",
       category: "connect",
@@ -126,6 +129,7 @@ export const defaultContent = {
     },
     {
       id: "edo",
+      image: "/images/services/light/svc-edo.svg",
       title: "ЭДО и подпись",
       subtitle: "Договоры и акты без бумаги, подписание ЭЦП прямо в кабинете",
       category: "docs",
@@ -142,6 +146,7 @@ export const defaultContent = {
     },
     {
       id: "antifraud",
+      image: "/images/services/light/svc-antifraud.svg",
       title: "Антифрод для сайта",
       subtitle: "Защита платежей и форм от автоматических атак и подбора карт",
       category: "security",
@@ -158,6 +163,7 @@ export const defaultContent = {
     },
     {
       id: "search-ads",
+      image: "/images/services/light/svc-ads.svg",
       title: "Реклама в поиске",
       subtitle: "Настройка и ведение кампаний под ключ, без агентской комиссии",
       category: "ads",

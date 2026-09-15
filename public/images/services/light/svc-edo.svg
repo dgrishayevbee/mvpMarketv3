@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="svc_edo_light_tile" x1="0" y1="0" x2="0.5" y2="1"><stop offset="0" stop-color="#F4F5F7"/><stop offset="1" stop-color="#E7E9ED"/></linearGradient>
+  <linearGradient id="svc_edo_light_body" x1="0.2" y1="0" x2="0.6" y2="1">
+    <stop offset="0" stop-color="#3A3F47"/><stop offset="1" stop-color="#191C21"/>
+  </linearGradient>
+  <linearGradient id="svc_edo_light_acc" x1="0" y1="0" x2="0.6" y2="1">
+    <stop offset="0" stop-color="#FFDD55"/><stop offset="1" stop-color="#F3A008"/>
+  </linearGradient>
+  <filter id="svc_edo_light_sh" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="3" stdDeviation="3.2" flood-color="#080A0C" flood-opacity="0.2"/>
+  </filter>
+</defs><rect x="0" y="0" width="80" height="80" rx="22" fill="url(#svc_edo_light_tile)"/><path d="M22 0 h36 a22 22 0 0 1 22 22 v5 H0 v-5 A22 22 0 0 1 22 0 z" fill="#FFFFFF" opacity="0.07"/>
+<g filter="url(#svc_edo_light_sh)">
+  <path d="M19 10 h25 l17 17 v37 a8 8 0 0 1 -8 8 h-34 a8 8 0 0 1 -8 -8 v-46 a8 8 0 0 1 8 -8 z" fill="url(#svc_edo_light_body)"/>
+</g>
+<path d="M44 10 l17 17 h-10 a7 7 0 0 1 -7 -7 z" fill="#9BA3AE"/>
+<g fill="#F4F5F7">
+  <rect x="21" y="34" width="26" height="5" rx="2.5"/>
+  <rect x="21" y="44" width="34" height="5" rx="2.5"/>
+</g>
+<path d="M21 60 c5 -9 8 6 13 -1 s7 -7 12 1" fill="none" stroke="url(#svc_edo_light_acc)" stroke-width="4.2" stroke-linecap="round"/></svg>
