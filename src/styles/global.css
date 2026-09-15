@@ -41,7 +41,6 @@ a {
 }
 
 a:hover {
-  color: var(--accent);
   text-decoration-color: var(--ink-3);
 }
 

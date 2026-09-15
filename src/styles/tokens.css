@@ -1,5 +1,5 @@
 /*
-  Токены дизайн-системы Beeline Business.
+  Токены дизайн-системы Beeline Business — гибридный вариант (v3).
 
   Источник — helmet-блок из DS-BASE.md (экспорт Claude Design). Имена и
   значения перенесены один в один: это единственный источник истины по
@@ -9,21 +9,25 @@
 */
 
 :root {
-  --bg: #f7f5f1;
-  --bg-sunken: #efebe3;
+  --bg: #f5f5f6;
+  --bg-sunken: #ebebed;
   --surface: #ffffff;
-  --surface-2: #fbfaf7;
+  --surface-2: #fafafb;
 
-  --border: #e7e1d7;
-  --border-strong: #cfc8ba;
+  --border: #e4e4e7;
+  --border-strong: #c8c8cd;
 
   --ink: #1a1a18;
-  --ink-2: #57534c;
-  --ink-3: #8b8579;
+  --ink-2: #56565c;
+  --ink-3: #85858c;
 
-  --accent: #141413;
-  --accent-hover: #333230;
-  --accent-ink: #ffffff;
+  --accent: #ffcc00;
+  --accent-hover: #e6b800;
+  --accent-ink: #1a1a18;
+
+  /* Тёмный токен фокуса. К --accent не привязан намеренно: жёлтая обводка
+     на белом даёт 1.5:1 и практически не видна. */
+  --focus: #1a1a18;
 
   --brand: #ffcc00;
   --brand-ink: #1a1a18;
@@ -45,8 +49,8 @@
   --r-lg: 16px;
   --r-pill: 999px;
 
-  --shadow-sm: 0 1px 2px rgba(26, 26, 24, 0.04);
-  --shadow-md: 0 2px 6px rgba(26, 26, 24, 0.05), 0 14px 30px -14px rgba(26, 26, 24, 0.12);
+  --shadow-sm: 0 1px 2px rgba(24, 24, 27, 0.04);
+  --shadow-md: 0 2px 6px rgba(24, 24, 27, 0.05), 0 14px 30px -14px rgba(24, 24, 27, 0.12);
 
   --card-border: 1px solid var(--border);
   --card-shadow: none;
