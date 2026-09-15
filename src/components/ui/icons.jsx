@@ -251,6 +251,22 @@ export const IconHelp = (p) => (
   </Svg>
 );
 
+export const IconWifi = (p) => (
+  <Svg {...p}>
+    <path d="M3.6 9.2a13 13 0 0 1 16.8 0" strokeLinecap="round" />
+    <path d="M6.9 13a8.2 8.2 0 0 1 10.2 0" strokeLinecap="round" />
+    <path d="M10.2 16.8a3.2 3.2 0 0 1 3.6 0" strokeLinecap="round" />
+    <circle cx="12" cy="20" r="0.9" />
+  </Svg>
+);
+
+export const IconSparkle = (p) => (
+  <Svg {...p}>
+    <path d="M11 3.6l1.8 4.6 4.6 1.8-4.6 1.8L11 16.4 9.2 11.8 4.6 10l4.6-1.8L11 3.6z" strokeLinejoin="round" />
+    <path d="M17.8 15l.9 2.3 2.3.9-2.3.9-.9 2.3-.9-2.3-2.3-.9 2.3-.9.9-2.3z" strokeLinejoin="round" />
+  </Svg>
+);
+
 /* Каталог обращается к иконке по строковому ключу из контента. */
 const BY_NAME = {
   book: IconBook,
@@ -275,6 +291,8 @@ const BY_NAME = {
   megaphone: IconMegaphone,
   calculator: IconCalculator,
   help: IconHelp,
+  wifi: IconWifi,
+  sparkle: IconSparkle,
 };
 
 export function Icon({ name, ...rest }) {

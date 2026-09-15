@@ -1,0 +1,99 @@
+.ai-banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+  gap: 32px;
+  align-items: center;
+  padding: 36px;
+  border-radius: var(--r-lg);
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.ai-banner__main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ai-banner__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+.ai-banner__subtitle {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--on-accent-ink-2);
+}
+
+.ai-banner__cta.btn {
+  margin-top: 6px;
+}
+
+.ai-banner__suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ai-banner__suggestion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 16px 10px 10px;
+  border: 1px solid var(--on-accent-border);
+  border-radius: var(--r-pill);
+  background: var(--on-accent-surface);
+  color: var(--accent-ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.ai-banner__suggestion:hover {
+  background: var(--on-accent-surface-hover);
+  border-color: var(--surface);
+}
+
+.ai-banner__suggestion:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.ai-banner__suggestion-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.ai-banner__suggestion-text {
+  min-width: 0;
+}
+
+/*
+  Ниже 900px правая колонка ушла бы в 300px и подсказки начали рвать
+  строки — кладём блоки друг под друга.
+*/
+@media (max-width: 900px) {
+  .ai-banner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding: 28px;
+  }
+}

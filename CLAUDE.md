@@ -50,6 +50,7 @@ src/
     layout/        Layout (топбар + сайдбар каталога), PageHead/SectionHead
     product/       ProductCard
     catalog/       PlansSection — колонки тарифов, HeroSearch,
+                    AiBanner — промо ИИ-подбора,
                     FaqSection — аккордеон частых вопросов
   context/         Auth, Content, Products, Cart, Favorites, Orders, UI
   hooks/           useLocalStorage
@@ -59,6 +60,16 @@ src/
 
 Появятся по мере надобности: `components/overlay/` (оверлеи в ДС пока не
 описаны).
+
+## Поиск по каталогу
+
+Мок «AI-подбора» живёт в `pages/HomePage.jsx`: служебные слова
+выкидываются, основы сравниваются по четырём буквам («ё» → «е»),
+показывается верхний ярус по числу попаданий. Синонимы, которых нет в
+описании услуги, лежат в `solutions[].keywords` — туда и надо дописывать,
+если запрос не доходит. Правило простое: любая фраза из
+`hero.queries` и из `aiBanner.suggestions` обязана возвращать ровно тот
+сервис, ради которого написана; проверять в живом поиске, а не на глаз.
 
 ## Иконки услуг
 

@@ -6,6 +6,7 @@ import { useCart } from "../context/CartContext.jsx";
 import { SectionHead } from "../components/layout/PageHead.jsx";
 import { ProductCard } from "../components/product/ProductCard.jsx";
 import { PlansSection } from "../components/catalog/PlansSection.jsx";
+import { AiBanner } from "../components/catalog/AiBanner.jsx";
 import { FaqSection } from "../components/catalog/FaqSection.jsx";
 import { HeroSearch } from "../components/catalog/HeroSearch.jsx";
 import { SearchField } from "../components/ui/Field.jsx";
@@ -24,22 +25,44 @@ function plural(n, one, few, many) {
   return many;
 }
 
-// Поиск по запросу на естественном языке: слова короче трёх букв
-// отбрасываются, остальные ищутся в названии, описании и составе решения.
-// Это мок «AI-подбора» — без модели, но ведёт себя предсказуемо.
-function matches(product, query) {
-  const words = query
+/*
+  Мок «AI-подбора»: модели нет, но вести себя он должен предсказуемо.
+
+  Раньше запрос совпадал, если хоть одно слово нашлось в карточке. Из-за
+  этого «сдать отчётность без бухгалтера» возвращало пять решений из шести
+  (слово «без» есть почти везде), а «принимать оплату картой» — ни одного:
+  сравнивались пятибуквенные обрезки, и «карто» не совпадало с «карты».
+
+  Сейчас: служебные слова выкидываются, остальные сравниваются по
+  четырёхбуквенной основе с обеих сторон, «ё» приводится к «е». Совпадения
+  считаются, и показывается только верхний ярус — решения с максимальным
+  числом попаданий. Словарь синонимов лежит в контенте (solutions[].keywords),
+  чтобы запрос «оплата картой» доходил до «Эквайринга», где слова «оплата»
+  в описании нет.
+*/
+const STOP = new Set([
+  "для", "без", "как", "что", "все", "мне", "нам", "это", "под", "при",
+  "из", "на", "и", "с", "по", "от", "в", "не", "к", "о", "до", "за", "у",
+  "мы", "я", "нужен", "нужно", "нужна",
+]);
+
+function stems(text) {
+  return text
     .toLowerCase()
-    .split(/[^a-zа-яё0-9]+/i)
-    .filter((w) => w.length >= 3);
+    .replace(/ё/g, "е")
+    .split(/[^a-zа-я0-9]+/i)
+    .filter((w) => w.length >= 3 && !STOP.has(w))
+    .map((w) => w.slice(0, 4));
+}
 
-  if (words.length === 0) return true;
-
-  const haystack = [product.title, product.subtitle, ...(product.features || [])]
-    .join(" ")
-    .toLowerCase();
-
-  return words.some((word) => haystack.includes(word.slice(0, 5)));
+function scoreOf(product, queryStems) {
+  const hay = new Set(
+    stems(
+      [product.title, product.subtitle, ...(product.features || []), ...(product.keywords || [])]
+        .join(" ")
+    )
+  );
+  return queryStems.filter((st) => hay.has(st)).length;
 }
 
 export function HomePage() {
@@ -54,6 +77,7 @@ export function HomePage() {
   const [query, setQuery] = useState("");
   const catalogRef = useRef(null);
   const plansRef = useRef(null);
+  const heroRef = useRef(null);
 
   // Категорию задаёт сайдбар через query — см. комментарий в Layout.jsx.
   const category = searchParams.get("category") || "all";
@@ -64,11 +88,17 @@ export function HomePage() {
   }, [content.categories]);
 
   const visible = useMemo(() => {
-    const q = query.trim();
-    return all.filter((p) => {
-      const byCategory = category === "all" || p.category === category;
-      return byCategory && (!q || matches(p, q));
-    });
+    const byCategory = all.filter((p) => category === "all" || p.category === category);
+    const queryStems = stems(query.trim());
+    if (queryStems.length === 0) return byCategory;
+
+    const scored = byCategory
+      .map((p) => ({ p, score: scoreOf(p, queryStems) }))
+      .filter((x) => x.score > 0);
+    if (scored.length === 0) return [];
+
+    const best = Math.max(...scored.map((x) => x.score));
+    return scored.filter((x) => x.score === best).map((x) => x.p);
   }, [all, category, query]);
 
   const scrollToCatalog = () => {
@@ -86,6 +116,19 @@ export function HomePage() {
       plansRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [location.hash, location.key]);
+
+  // Подсказка из промо-блока: подставляем фразу в поиск и уводим к выдаче.
+  const askAssistant = (text) => {
+    setDraft(text);
+    setQuery(text);
+    scrollToCatalog();
+  };
+
+  // Кнопка «Попробовать сейчас» ведёт к самому полю, а не к результатам:
+  // подставлять нечего, человек будет формулировать сам.
+  const startAssistant = () => {
+    heroRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const resetSearch = () => {
     setDraft("");
@@ -114,6 +157,7 @@ export function HomePage() {
         onChange={setDraft}
         onSubmit={runSearch}
         onBrowse={scrollToCatalog}
+        sectionRef={heroRef}
       />
 
       <section className="section" id="catalog" ref={catalogRef}>
@@ -174,6 +218,12 @@ export function HomePage() {
       </section>
 
       <PlansSection plans={content.plans} onChoose={choosePlan} sectionRef={plansRef} />
+
+      <AiBanner
+        banner={content.aiBanner}
+        onSuggestion={askAssistant}
+        onStart={startAssistant}
+      />
 
       <FaqSection faq={content.faq} />
     </>

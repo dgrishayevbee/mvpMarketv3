@@ -12,11 +12,11 @@ import "./HeroSearch.css";
   текстом и кареткой. Иначе анимацию нельзя было бы оформить — у
   ::placeholder нет ни каретки, ни посимвольного вывода.
 */
-export function HeroSearch({ hero, value, onChange, onSubmit, onBrowse }) {
+export function HeroSearch({ hero, value, onChange, onSubmit, onBrowse, sectionRef }) {
   const typed = useTypewriter(hero.queries, value.length > 0);
 
   return (
-    <section className="hero">
+    <section className="hero" ref={sectionRef}>
       <span className="hero__mark" aria-hidden="true">
         <svg width="88" height="88" viewBox="0 0 88 88" fill="none">
           <circle cx="40" cy="30" r="19" fill="var(--bg-sunken)" />

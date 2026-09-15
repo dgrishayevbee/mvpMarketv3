@@ -39,6 +39,21 @@
   color: var(--accent-ink);
 }
 
+/*
+  Тёмная кнопка для жёлтой полосы: на --accent вариант primary сливается
+  с фоном, а secondary на нём выглядит вырезанным из другого макета.
+*/
+.btn--ink {
+  border: none;
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.btn--ink:hover {
+  background: var(--ink-2);
+  color: var(--surface);
+}
+
 .btn--secondary {
   border: 1px solid var(--border-strong);
   background: var(--surface);

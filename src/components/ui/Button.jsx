@@ -1,8 +1,9 @@
 import "./Button.css";
 
 /*
-  Кнопка ДС. Вариантов три: primary (чёрный --accent), secondary (контур),
-  ghost (без фона). Правило ДС — одна primary на экран.
+  Кнопка ДС. Варианты: primary (жёлтый --accent), secondary (контур),
+  ghost (без фона) и ink (тёмная заливка — для действия на жёлтой полосе,
+  где primary слился бы с фоном). Правило ДС — одна primary на экран.
   Размер md = --row-h (44px), sm = 36-38px для плотных строк.
 */
 export function Button({
